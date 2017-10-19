@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Local Weather Viewer</title>
+  
+  
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+<style>
+	h1 {
+	  font-family: Times New Roman;
+	  font-size: 45px;
+	}
+	
+	h2 {
+	  font-family: Times New Roman;
+	  font-size: 35px;
+	}
+	
+	h3 {
+	  font-family: Times New Roman;
+	}
+	
+	.weather-Background {
+	  background-image: url("https://res.cloudinary.com/hijerboa/image/upload/v1499386831/background_2_p0lpmo.jpg");
+	  background-repeat: no-repeat;
+	  background-size: cover;
+	}
+</style>
+
+  
+</head>
+
+<body>
+  <html>
+	<head>
+		<script src="https://use.fontawesome.com/e337e1588d.js"></script>
+	</head>
+	<body class = "weather-Background">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<div class = "row">
+			<h1 align="center" class="topText"><strong>Your Local Weather</strong></h1>
+			<h2 align="center" class="topText"><strong>Your current location is: <span class = "location">Current Location</span></strong></h2>
+			<div class="col-md-6 col-md-offset-3">
+				<div class = "row">
+					<div class = "col-md-4">
+						<div class="well">
+							<h3 align="center">Current Temperature:</h3>
+							<h3 class="temp" align="center">Temperature</h3>
+							<p align="center"><button type="button" class="btn btn-primary coolButton" role="button">See in Fahrenheit</button></p>
+						</div>
+					</div>
+					<div class = "col-md-4">
+						<div class = "well">
+							<h3 align ="center">Forcast:</h3>
+							<h3 class="precip" align="center">Precipitation</h3>
+						</div>
+					</div>
+					<div class = "col-md-4">
+						<div class="well">
+							<h3 align="center">Humidity:</h3>
+							<h3 align="center" class="Humidity">Humidity</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<footer>
+		<p align = "center">Designed and Created By Nicholas Cleary</p>
+	</footer>
+</html>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
+<script language = "javascript">
+	var lat, long, temp, city, state, country, precip, humidity, celcius;
+	function setVar(latitude, longitude){
+		lat = latitude;
+		long = longitude;
+		$.getJSON("https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + long + "&appid=b10ed878ab32cd0f353d2df105a6ec39&units=metric", function(forcast) {
+				console.log(forcast);
+				var info = {};
+				temp = forcast.temp;
+				//$(".temp").html(info.temp);
+				city = forcast.name;
+				$(".location").html(city);
+				temp = forcast.main.temp
+				temp = Math.round(temp);
+				celcius = temp + " °C";
+				$(".temp").html(celcius);
+				humidity = forcast.main.humidity;
+				humidity += "%";
+				$(".Humidity").html(humidity);
+				precip = forcast.weather[0].main;
+				$(".precip").html(precip);
+				if(precip === "Clouds"){
+					$(".weather-Background").css("background-image", "url(https://res.cloudinary.com/hijerboa/image/upload/v1499891407/cloudy_dqwm9p.jpg)");
+				} else if (precip === "clear sky"){
+					$(".weather-Background").css("background-image", "url(https://res.cloudinary.com/hijerboa/image/upload/v1499386831/background_2_p0lpmo.jpg)");
+				} else if (precip === "Rain"){
+					$(".weather-Background").css("background-image", "url(https://res.cloudinary.com/hijerboa/image/upload/v1499891643/rain_evd9cp.jpg)");
+					$(".location").css("color", "white");
+				} else if (precip === "Snow"){
+					$(".weather-Background").css("background-image", "url(https://res.cloudinary.com/hijerboa/image/upload/v1499891669/snow_j3csty.jpg)");
+				}
+			});
+		
+	}
+	function getLocation(){
+		navigator.geolocation.getCurrentPosition(function(position) {
+		setVar(position.coords.latitude, position.coords.longitude);
+		});
+	}
+	$(document).ready(function() {
+		getLocation();
+		var temptype = "celcius";
+		$(".coolButton").click(function(){
+			if(temptype == "celcius"){
+				temp *= 1.8;
+				temp += 32;
+				temp = Math.round(temp);
+				var fah = temp + " °F";
+				$(".temp").html(fah);
+				temptype = "fah";
+				$(".coolButton").html("See in Celcius");
+			}else if(temptype == "fah"){
+				temp -= 32;
+				temp *= (5/9);
+				temp = Math.round(temp);
+				celcius = temp + " °C";
+				$(".temp").html(celcius);
+				temptype = "celcius";
+				$(".coolButton").html("See in Fahrenheit");
+			}
+		});
+	});
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-102827092-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</body>
+</html>

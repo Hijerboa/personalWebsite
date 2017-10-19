@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Wikipedia Viewer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+
+<style>
+	h1 {
+	  text-align: center;
+	  color: white;
+	}
+	
+	p {
+	  text-align: center;
+	  color: black;
+	}
+	
+	body {
+	  background-image: url(https://res.cloudinary.com/hijerboa/image/upload/v1500156477/background_emmz1x.jpg);
+	}
+	
+	.searchBox {
+	  width: 150px;
+	  box-sizing: border-box;
+	  border: 3px sold #ccc;
+	  border-radius: 5px;
+	  font-size: 16px;
+	  background-color: white;
+	  background-image: url("https://res.cloudinary.com/hijerboa/image/upload/v1500157746/searchicon_jm5abu.png");
+	  background-position: 10px 10px;
+	  background-repeat: no-repeat;
+	  padding: 12px 20px 12px 40px;
+	  webkit-transition: width 0.4s ease-in-out;
+	  transition: width 0.4s ease-in-out;
+	}
+	
+	.searchBox:focus {
+	  width: 100%;
+	}
+	
+	.dropdown {
+	  position: relative;
+	  display: inline-block;
+	}
+	
+	.dropContent {
+	  display: none;
+	  position: absolute;
+	  background-color: #f9f9f9;
+	  min-width: 160px;
+	  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	  z-index: 1;
+	}
+	
+	.dropContent a {
+	  color: black;
+	  padding: 12px 16px;
+	  text-decoration: none;
+	  display: block;
+	}
+
+.dropContent a:hover {
+  background-color: #f1f1f1;
+}
+</style>
+
+  
+</head>
+
+<body>
+  <head>
+	
+</head>
+<body>
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<h1>Wikipedia Viewer</h1>
+					<form align="center">
+						<input type="text" name="search" placeholder="Search..." class="searchBox">
+					</form>
+				
+				<br>
+				<br>
+				<br>
+				
+				<div class="row results">
+					<a class="href1" href="google.com" style="display:block">
+						<div class="col-md-4">
+							<p class="well result1">Result 1</p>
+						</div>
+					</a>
+					<a class="href2" href="google.com" style="display:block">
+						<div class="col-md-4">
+							<p class="well result2">Result 2</p>
+						</div>
+					</a>
+					<a class="href3" href="google.com" style="display:block">
+						<div class="col-md-4">
+							<p class="well result3">Result 3</p>
+						</div>
+					</a>
+				</div>
+				<div class="row results">
+					<a class="href4" href="google.com" style="display:block">
+						<div class="col-md-4">
+							<p class="well result4">Result 4</p>
+						</div>
+					</a>
+					<a class="href5" href="google.com" style="display:block">
+						<div class="col-md-4">
+							<p class="well result5">Result 5</p>
+						</div>
+					</a>
+					<a class="href6" href="google.com" style="display:block">
+						<div class="col-md-4">
+							<p class="well result6">Result 6</p>
+						</div>
+					</a>
+				</div>
+				<br>
+				<br>
+				<br>
+				<p><a href="https://en.wikipedia.org/wiki/Special:Random" class="btn btn-primary" role="button" align="center">Random Article</a></p>
+			</div>
+		</div>
+</body>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
+
+<script language="javascript">
+	var key, keyNum, keyPushed, keyToAdd, totalInput, stringhref1, stringhref2, stringhref3, stringhref4, stringhref5, stringhref6, finalhref1, finalhref2, finalhref3, finalhref4, finalhref5, finalhref6 ;
+	var articlesList = {};
+	var input = [];
+	var href1 = [];
+	var href2 = [];
+	var href3 = [];
+	var href4 = [];
+	var href5 = [];
+	var href6 = [];
+	var keyNums = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+	function callAPI(key){
+		//Appends numbers to input
+		if(key <= 57 && key >= 48){
+			keyPushed = key;
+			keyNum = (keyPushed - 48);
+			keyToAdd = keyNums[keyNum];
+			input.push(keyToAdd);
+			//Appends letters to string
+		} else if (key <= 90 && key >= 65){
+			keyPushed = key;
+			keyNum = (keyPushed - 55);
+			keyToAdd = keyNums[keyNum];
+			input.push(keyToAdd);
+			//Adds backspace functionality
+		} else if (key == 8){
+			input.splice((input.length - 1), 1);
+			//Adds spaces to the string
+		} else if (key == 32){
+			input.push(" ");
+			//Adds periods to the string
+		} else if (key == 190){
+			input.push(".");
+			//Adds commmas to the string
+		} else if (key == 188){
+			input.push(",");
+			//Implements numpad functionality
+		} else if (key >= 96 && key <= 105){
+			keyPushed = key;
+			keyNum = (keyPushed - 96);
+			keyToAdd = keyNums[keyNum];
+			input.push(keyToAdd);
+		}
+		//Creates a usable string out the array
+		totalInput = input.join("");
+		console.log(totalInput);
+		//If the string is longer than 0, calls wikipedia api
+		if(totalInput.length >= 1){
+			$.getJSON("https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&list=search&continue=&srsearch=" + totalInput + "&srwhat=text&srprop=timestamp", function(articles) {
+			articlesList = articles;
+			//Sets the text in the wells equal to the values in the results
+			$(".result1").html(articlesList.query.search[0].title);
+			$(".result2").html(articlesList.query.search[1].title);
+			$(".result3").html(articlesList.query.search[2].title);
+			$(".result4").html(articlesList.query.search[3].title);
+			$(".result5").html(articlesList.query.search[4].title);
+			$(".result6").html(articlesList.query.search[5].title);
+			//First result href creation	
+			href1.push(articlesList.query.search[0].title);
+			href1[0].split(" ");
+			href1.join("_");
+			stringhref1 = href1[0];
+			finalhref1 = "https://en.wikipedia.org/wiki/" + stringhref1;
+			$("a.href1").attr("href", finalhref1);
+			href1.splice(0);
+			//Second result href creation
+			href2.push(articlesList.query.search[1].title);
+			href2[0].split(" ");
+			href2.join("_");
+			stringhref2 = href2[0];
+			finalhref2 = "https://en.wikipedia.org/wiki/" + stringhref2;
+			$("a.href2").attr("href", finalhref2);
+			href2.splice(0);
+			//Third result href creation
+			href3.push(articlesList.query.search[2].title);
+			href3[0].split(" ");
+			href3.join("_");
+			stringhref3 = href3[0];
+			finalhref3 = "https://en.wikipedia.org/wiki/" + stringhref3;
+			$("a.href3").attr("href", finalhref3);
+			href3.splice(0);
+			//Fourth result href creation
+			href4.push(articlesList.query.search[3].title);
+			href4[0].split(" ");
+			href4.join("_");
+			stringhref4 = href4[0];
+			finalhref4 = "https://en.wikipedia.org/wiki/" + stringhref4;
+			$("a.href4").attr("href", finalhref4);
+			href4.splice(0);
+			//Fifth result href creation
+			href5.push(articlesList.query.search[4].title);
+			href5[0].split(" ");
+			href5.join("_");
+			stringhref5 = href5[0];
+			finalhref5 = "https://en.wikipedia.org/wiki/" + stringhref5;
+			$("a.href5").attr("href", finalhref5);
+			href5.splice(0);
+			//Sixth result href creation
+			href6.push(articlesList.query.search[5].title);
+			href6[0].split(" ");
+			href6.join("_");
+			stringhref6 = href6[0];
+			finalhref6 = "https://en.wikipedia.org/wiki/" + stringhref6;
+			$("a.href6").attr("href", finalhref6);
+			href6.splice(0);
+		});
+			
+			//shows results
+			$(".results").show();
+		}else{ //If the string is empty, then hide the results
+			$(".results").hide();
+		}
+	}
+	
+	$(document).ready(function (){
+		$(".results").hide(); //When page is loaded, hide results
+		$(".searchBox").keydown(function(event){ //Calls the api when a key is pressed
+			key = event.which;
+			callAPI(key);
+		});
+	});
+</script>
+
+</body>
+</html>

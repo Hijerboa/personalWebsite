@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Random Quote Machine By Nick Cleary</title>
+  
+  
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+<style>
+	.cool-background{
+		background-image: url(http://res.cloudinary.com/hijerboa/image/upload/v1499105165/new_thingy_fo9key.jpg);
+	}
+	.centered{
+		align-content: center;
+	}
+	h1 {
+		color: white;
+		font-family: Brush Script Std;
+	}
+	p {
+		font-family: Brush Script Std;
+	}
+	.quotes{
+		display: block;
+		margin: auto;
+	}
+	.large {
+		font-size: 20px;
+	}
+</style>
+
+  
+</head>
+
+<body>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://use.fontawesome.com/f9b33de092.js"></script>
+
+<body class="cool-background">
+ <div class="row">
+  <div class="col-md-6 col-md-offset-3">
+   <h1><center>Random Quote Machine</center></h1>
+   <div class="well">
+    <p align="center" class="quote large">OMG ITS A COOL QUOTE</p>
+    <p align="right" class="author">The Author of this coolness</p>
+   </div>
+   <p>
+    <center><a class="btn btn-success btn-lg" href="#" role="button" id="new-Quote">Get a new quote!</center></a></p>
+   <p>
+    <center><a class="btn btn-info btn-lg" href="#" role="button" id="tweet-this" href="https://twitter.com/intent/tweet?text=">Tweet This!</a></center>
+   </p>
+  </div>
+ </div>
+</body>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
+<script language = "javascript">
+var quotes = [
+		["There can be no deep disappointment where there is not deep love.", "Dr. Martin Luther King Jr."],
+		["If Internet Explorer is brave enough to ask you to be your default browser, you're brave enough to ask that girl out", "Abraham Lincoln"],
+		["There is nothing noble in being superior to your fellow man; true nobility is being superior to your former self.", "Ernest Hemmingway"],
+		["What you are is what you have been. What you'll be is what you do now.", "Budda"],
+		["If the path before you is clear, you're probably on someone else's.", "Joseph Cambell"],
+		["First I was dying to finish high school and start college.\n And then I was dying to finish college and start working.\n And then I was dying to marry and have children.\n And then I was dying to marry and have children.\n And then I was dying for my children to grow old enough for school so I could return to work.\n And then I was dying to retire.\n And now, I am dying... And suddenly I realize I forgot to live.", "Anonymous"],
+		["It's hard to beat a person who never gives up.", "Babe Ruth"],
+		["What if I fail? Oh my darling, what if you fly?", "Eric Hanson"],
+		["Ever loved someone so much, you would do anything for them? Yeah, well, make that someone yourself and do whatever the hell you want.", "Harvey Specter"],
+		["For what it's worth: It's never to late to be whoever you want to be. I hope you life a life you're proud of, and if you find that you're not, I hope you have the strength to start over", "F. Scott Fitzgerald"]
+		["You don't conquer the anxiety about dying, you meet it with courage.", "Paul Tillich"],
+		["You have $86,400 in your account and someone stole $10 from you. Would you be upset and throw all of the $86,390 away in hopes of getting back at the person that took your $10? Or move on and live? Right, move on and live. See, we have 86,400 seconds in every day, so do not let someone's negative 10 seconds ruin the rest of the 86,390. Don't sweat the small stuff, life is bigger than that.", "Unknown."],
+		["Stop being afraid of what could go wrong, and start being excited about what could go right.", "Unknown"],
+		["Don't worry if people don't like you. Most people are struggling to like themselves."],
+		["If you want to achieve greatness, stop asking for permission.", "Unknown."],
+		["Don't be afaid to take a big step. You can't cross a chasm in two small steps.", "David Lloyd George"],
+		["The harder thing to do and the right thing to do are usually the same thing.", "Unknown"],
+		["Hard work beats talent when talent doesn't work hard.", "Tim Notke"],
+		["Nothing is sadder than the future, except maybe the past.", "Unknown"],
+		["Happiness can be found in the darkest of times, when only one remembers to turn on the light.", "Albus Dumbledore"],
+		["Nobody can give you freedom. Nobody can give you equality or justice. If you are a man, you take it.", "Malcolm X"],
+		["Man is least himself when he talks in his own person. Give him a mask, and he will tell you the truth.", "Oscar Wilde"],
+		["Our prime purpose in this life is to help others. And if you can't help them, at least don't hurt them.", "Dalai Lama"],
+		["Worry does not empty tomorrow of its sorrow; it empties today of its strength.", "Unknown"],
+		["I love my sleep. My life has the tendency to fall apart when I'm awake, you know?", "Ernest Hemingway"],
+		["The secret of getting ahead is getting started.", "Mark Twain"],
+		["You must be willing to do something you have never done before to get to where you have never been before.", "Anonymous"],
+		["Stop waiting for Friday, for summer, for someone to fall in love with you, for life. Happiness is achieved when you stop waiting for it and make the most of the moment you're in right now", "Anonymous"],
+		["Waiting to make changes until you're happy is like tell your doctor you want to wait until you are better to start taking your medicine.", "Unknown"],
+		["F.E.A.R has two meanings- Forget Everything and Run, OR, Face Everything and Rise. The choice is yours.", "Unknown"],
+		["Those who make peaceful revolution impossible will make violent revolution inevitable.", "John F. Kennedy"],
+		["Keep your thoughts positive, because your thoughts become your words. Keep your words positive because your words become your behavior. Keep your behavior positive because your behavior becomes your habits. Keep your habits positive, because your habits become your values. Keep your values positive because your values become your destiny.", "Mahatma Gandhi"]
+	];
+	var number;
+	var intermediate = " ~";
+function newQuote(){
+		number = (Math.floor(Math.random() * 31) - 1);
+		$(".quote").html(quotes[number][0]);
+		$(".author").html(quotes[number][1]);
+}
+
+
+function Tweet(){
+	window.open("https://twitter.com/intent/tweet?text=" + quotes[number][0] + " ~" + quotes[number][1]);
+}
+
+
+$(document).ready(function() {
+	newQuote();
+	$("#new-Quote").on("click", newQuote);
+	$("#tweet-this").on("click", Tweet);
+});
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-102827092-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</body>
+</html>

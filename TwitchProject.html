@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Twitch API</title>
+
+
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+
+      <style>
+        .header {
+          background-color: purple;
+        }
+
+        h1 {
+          text-align: center;
+          color: white;
+        }
+
+        .body {
+          background-color: #990099;
+          text-align: center;
+        }
+
+        .button {
+          text-align: center;
+        }
+
+        .buttons {
+          background-color: #990033;
+        }
+
+        p {
+          text-align: center;
+        }
+
+        .small-image {
+          height: 125px;
+          width: 125px;
+        }
+      </style>
+
+
+</head>
+
+<body>
+  <body>
+ <div class="container-fluid">
+  <div class="row">
+   <div class="col-md-8 col-md-offset-2 header">
+    <h1>Twitch TV Viewer</h1>
+   </div>
+  </div>
+  <div class="row">
+   <div class="col-md-8 col-md-offset-2">
+    <div class="row buttons">
+     <br />
+     <a href="#" style="display:block">
+      <div class="col-md-6 button Online">
+       <h3 class="well button">Online</h3>
+      </div>
+     </a>
+     <a href="#" style="display:block">
+      <div class="col-md-6 button Offline">
+       <h3 class="well button">Offline</h3>
+      </div>
+     </a>
+    </div>
+   </div>
+  </div>
+  <div class="row">
+   <div class="col-md-8 col-md-offset-2 body">
+    <br />
+   </div>
+  </div>
+ </div>
+</body>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
+
+    <script language = "javascript">
+      var streamers = [
+      	"ESL_SC2",
+      	"OgamingSC2",
+      	"cretetion",
+      	"freecodecamp",
+      	"storbeck",
+      	"habathcx",
+      	"comster404",
+      	"RobotCaleb",
+      	"noobs2ninjas"
+      ];
+      //Used to increment the streamer array
+      var streamIndex = 0;
+      //Used to increment the online array
+      var onlineIndex = 0;
+      //Used to increment the offline array
+      var offlineIndex = 0;
+      var streamURL = "https://wind-bow.glitch.me/twitch-api/streams/";
+      var usersURL = "https://wind-bow.glitch.me/twitch-api/users/";
+      var online = [];
+      var offline = [];
+      var nonExist = [];
+      var game,
+      	link,
+      	name,
+      	bio,
+      	image,
+      	statusVar,
+      	usersVar,
+      	logo,
+      	offlineName,
+      	offDescription,
+      	offLink;
+
+      function getStatus(streamer) {
+      	$.getJSON(streamURL + streamer, function(status) {
+      		//If there is no current stream, say it's offline
+      		if (status.stream === null) {
+      			//If there is no current stream, test to see if user exists.
+      			$.getJSON(usersURL + streamer, function(info) {
+      				if (info.error == "Not Found") {
+      					nonExist.push(streamers[streamIndex]);
+      					//If more streamers are available, call function again
+      					if (++streamIndex < streamers.length) {
+      						getStatus(streamers[streamIndex]);
+      					}
+      				} else {
+      					offline.push(streamers[streamIndex]);
+      					//console.log(offline);
+      					if (++streamIndex < streamers.length) {
+      						getStatus(streamers[streamIndex]);
+      					}
+      				}
+      			});
+      			//If there is a current stream, then say streamer is streaming
+      		} else if (status.stream.stream_type == "live") {
+      			online.push(streamers[streamIndex]);
+      			//same as above
+      			if (++streamIndex < streamers.length) {
+      				getStatus(streamers[streamIndex]);
+      			}
+      		}
+      	});
+      }
+      function updateOnline(onStreamer) {
+      	//Find information about the current stream
+      	$.getJSON(streamURL + onStreamer, function(status) {
+      		statusVar = status;
+      		game = statusVar.stream.game;
+      		//Find information about the user
+      		$.getJSON(usersURL + onStreamer, function(info) {
+      			usersVar = info;
+      			//If the user has set their bio, display that, if not, then display a predefined message
+      			if (info.bio !== null) {
+      				bio = info.bio;
+      			} else if (info.bio === null) {
+      				bio = "This user has not set their bio.";
+      			}
+      			name = info.display_name;
+      			link = "https://twitch.tv/" + name;
+      			image = info.logo;
+      			//Append a well in the page, and add relevant information to it.
+      			$(".body").append(
+      				'<div class="well well-lg online"> <a class="hrefsomething" href="' +
+      					link +
+      					'" style="display:block"> <div class="row"> <div class="col-md-2"> <img src="' +
+      					image +
+      					'" class="thumbnail small-image" alt="profile pic"> </div>  <div class="col-md-3"><p>' +
+      					name +
+      					'</p></div> <div class="col-md-3"><p>' +
+      					game +
+      					'</p></div>  <div class="col-md-4"> <p>' +
+      					bio +
+      					"</p></div> </div> </a> </div>"
+      			);
+      		});
+      	});
+      	//If there are more users online, update their wells as well, if not, then exit the loop
+      	if (++onlineIndex < online.length) {
+      		updateOnline(online[onlineIndex]);
+      	}
+      }
+      function updateOffline(offstreamer) {
+      	//console.log(offline);
+      	$.getJSON(usersURL + offstreamer, function(info) {
+      		console.log(info);
+      		if (info.logo === null) {
+      			logo =
+      				"https://res.cloudinary.com/hijerboa/image/upload/v1501367943/twitch_icon_qrs2ak.png";
+      		} else {
+      			logo = info.logo;
+      		}
+      		offlineName = info.display_name;
+      		if (info.bio === null) {
+      			offDescription = "This user has not set their bio";
+      		} else {
+      			offDescription = info.bio;
+      		}
+      		offLink = "https://twitch.tv/" + offlineName;
+      		$(".body").append(
+      			'<div class="well well-lg offline"> <a class="hrefsomething" href="' +
+      				offLink +
+      				'" style="display:block"> <div class="row"> <div class="col-md-3"> <img src = "' +
+      				logo +
+      				'" class="thumbnail small-image" alt="profile pic"> </div> <div class="col-md-3"> <p>' +
+      				offlineName +
+      				'</p> </div> <div class="col-md-6"><p>' +
+      				offDescription +
+      				"</p></div> </div </a> </div>"
+      		);
+      	});
+      	if (++offlineIndex < offline.length) {
+      		updateOffline(offline[offlineIndex]);
+      	}
+      }
+
+      $(document).ready(function() {
+      	getStatus(streamers[0]);
+      	setTimeout(function() {
+      		updateOnline(online[0]);
+      		$(".Online").click(function() {
+      			$(".online").remove();
+      			$(".offline").remove();
+      			updateOnline(online[0]);
+      			onlineIndex = 0;
+      		});
+      		$(".Offline").click(function() {
+      			$(".online").remove();
+      			$(".offline").remove();
+      			updateOffline(offline[0]);
+      			offlineIndex = 0;
+      		});
+      	}, 3000);
+      });
+    </script>
+
+</body>
+</html>
