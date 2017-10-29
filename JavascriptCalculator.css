@@ -21,11 +21,12 @@
   margin: 0;
   padding: 0;
   height: 25vh;
-  background-color: #000000; }
+  background-color: #000000;
+  position: relative; }
 
 #ScreenWriting {
   color: white;
-  position: relative;
+  position: absolute;
   bottom: 0px;
   right: 0px; }
 
