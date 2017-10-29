@@ -1,0 +1,35 @@
+/* Sass Document */
+#Center {
+  width: 500px;
+  background-color: #ddd;
+  float: left; }
+
+#Right {
+  background-color: #999;
+  float: right; }
+
+#Left {
+  background-color: #999;
+  float: left; }
+
+#Center, #Right, #Left {
+  margin: 0;
+  padding: 0;
+  height: 100vh; }
+
+#Screen {
+  margin: 0;
+  padding: 0;
+  height: 25vh;
+  background-color: #000000; }
+
+#ScreenWriting {
+  color: white;
+  position: relative;
+  bottom: 0px;
+  right: 0px; }
+
+#Button {
+  color: green; }
+
+/*# sourceMappingURL=JavascriptCalculator.css.map */
