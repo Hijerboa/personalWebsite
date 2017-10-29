@@ -13,8 +13,8 @@
     	<div id="Left">foo</div>
       <div id="Center">
       	<div id="Screen">
-        	<h1 align="right" id="ScreenWriting">23535</h1>
-          <h3 align="right" id="ScreenWriting">34+34+3535</h3>
+        	<h1 align="right" id="ScreenWritingAnswer">23535</h1>
+          <h3 align="right" id="ScreenWritingProblem">34+34+3535</h3>
         </div>
       </div>
       <div id="Right">foo</div>
@@ -28,9 +28,14 @@
   <script language = "javascript">
 		$(document).ready(function() {
       if(window.screen.width > 500){
-				console.log("hi");
+				$('#Center').css("width", 500);
 				$(window).on("resize",function() {
 					$("#Left, #Right").css("width", ($("body").width()-$("#Center").width())/2);
+				}).trigger("resize");
+			} else if (window.screen.width < 500){
+				$(window).on("resize",function() {
+					$("#Left, #Right").css("width", 0);
+					$('#Center').css("width", ($("body").width()));
 				}).trigger("resize");
 			}
     });

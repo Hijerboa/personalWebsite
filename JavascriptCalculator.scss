@@ -1,6 +1,5 @@
 /* Sass Document */
-#Center {
-				width: 500px;
+			#Center {
         background-color: #ddd;
 				float: left;
       }
@@ -20,14 +19,20 @@
 			#Screen {
 				margin:0;
 				padding:0;
-				height:25vh;
+				height:20vh;
 				background-color:#000000;
 				position: relative;
 			}
-			#ScreenWriting {
+			#ScreenWritingAnswer {
 				color: white;
 				position: absolute;
-				bottom: 0px;
+				bottom: 5vh;
+				right: 0px;
+			}
+			#ScreenWritingProblem {
+				color: white;
+				position: absolute;
+				bottom: 0vh;
 				right: 0px;
 			}
 			#Button {
