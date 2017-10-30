@@ -1,5 +1,5 @@
 /* Sass Document */
-					body {
+			body {
 				 	margin-top: 0px;
 				 	margin-right: 0px;
 				 	margin-bottom: 0px;
@@ -44,6 +44,18 @@
 				bottom: 0vh;
 				right: 1vw;
 			}
-			#Button {
-				color: green;
+			.Row{
+				width: 500px;
+			}
+			.Button {
+				background-color: green;
+				width: 120px;
+				height: 15vh;
+				float: left;
+				display: inline;
+				margin: 5px;
+				padding: 5px;
+				border-width: 5px;
+				border-color: red;
+				border-style: solid;
 			}

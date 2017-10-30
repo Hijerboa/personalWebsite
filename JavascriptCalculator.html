@@ -15,6 +15,20 @@
         	<h1 align="right" id="ScreenWritingAnswer">23535</h1>
           <h3 align="right" id="ScreenWritingProblem">34+34+3535</h3>
         </div>
+        <div class="Row">
+        	<div class="Button">
+          	<p>Hola</p>
+          </div>
+          <div class="Button">
+          	<p>Hola</p>
+          </div>
+          <div class="Button">
+          	<p>Hola</p>
+          </div>
+          <div class="Button">
+          	<p>Hola</p>
+          </div>
+        </div>
       </div>
       <div id="Right"></div>
     </div>
@@ -33,6 +47,8 @@
 				$('#Center').css("width", 500);
 				$(window).on("resize",function() {
 					$("#Left, #Right").css("width", ($("body").width()-$("#Center").width())/2);
+					$(".Row").css("width", ($("#Center").width()));
+					$(".Button").css("width",(($(".Row").width())/5));
 				}).trigger("resize");
 			} else if (window.screen.availWidth <= 500){
 				$("body").css("width", window.screen.availWidth);
