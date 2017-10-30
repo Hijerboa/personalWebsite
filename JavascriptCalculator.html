@@ -4,27 +4,28 @@
     <title>Javascript Calculator</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <script src="https://use.fontawesome.com/e6800d6f9a.js"></script>
     <link rel="stylesheet" type="text/css" href="JavascriptCalculator.css"/>
   </head>
   <body>
     <div class="wrap">
-    	<div id="Left">foo</div>
+    	<div id="Left"></div>
       <div id="Center">
       	<div id="Screen">
         	<h1 align="right" id="ScreenWritingAnswer">23535</h1>
           <h3 align="right" id="ScreenWritingProblem">34+34+3535</h3>
         </div>
       </div>
-      <div id="Right">foo</div>
+      <div id="Right"></div>
     </div>
   </body>
+  <footer>
+  	<p align="center">Designed and Programmed by Nicholas Cleary</p>
+  </footer>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
   <script language = "javascript">
 		$(document).ready(function() {
       if(window.screen.width > 500){
@@ -33,6 +34,7 @@
 					$("#Left, #Right").css("width", ($("body").width()-$("#Center").width())/2);
 				}).trigger("resize");
 			} else if (window.screen.width < 500){
+				$("#Center").css("width", window.screen.width);
 				$(window).on("resize",function() {
 					$("#Left, #Right").css("width", 0);
 					$('#Center').css("width", ($("body").width()));

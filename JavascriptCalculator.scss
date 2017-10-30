@@ -1,4 +1,7 @@
 /* Sass Document */
+			*{
+				font: Arail, Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", serif;
+			}
 			#Center {
         background-color: #ddd;
 				float: left;
@@ -27,13 +30,13 @@
 				color: white;
 				position: absolute;
 				bottom: 5vh;
-				right: 0px;
+				right: 1vw;
 			}
 			#ScreenWritingProblem {
 				color: white;
 				position: absolute;
 				bottom: 0vh;
-				right: 0px;
+				right: 1vw;
 			}
 			#Button {
 				color: green;
