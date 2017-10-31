@@ -1,10 +1,7 @@
 /* Sass Document */
-body {
-  margin-top: 0px;
-  margin-right: 0px;
-  margin-bottom: 0px;
-  margin-left: 0px; }
-
+/* body {
+	 	margin: 0px 0px 0px 0px;
+	} */
 * {
   font: Arail, Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", serif; }
 
@@ -50,12 +47,12 @@ body {
 .Button {
   background-color: green;
   width: 120px;
-  height: 15vh;
+  height: 13vh;
   float: left;
   display: inline;
-  margin: 5px;
-  padding: 5px;
-  border-width: 5px;
+  margin: 6px;
+  padding: 3px;
+  border-width: 3px;
   border-color: red;
   border-style: solid; }
 
