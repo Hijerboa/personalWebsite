@@ -23,66 +23,63 @@
           	<h1 class="Lettered">AC</h1>
           </div>
           <div class="Button">
-          	<p>Hola</p>
+          	<i class="fa fa-backward fa-4x" aria-hidden="true" id="backwards"></i>
           </div>
           <div class="Button">
-          	<p>Hola</p>
+          	<h1 class="Symbols">/</h1>
           </div>
         </div>
         <div class="Row">
         	<div class="Button">
-          	<p>Hola</p>
+          	<h1 class="Numbers">7</h1>
           </div>
           <div class="Button">
-          	<p>Hola</p>
+          	<h1 class="Numbers">8</h1>
           </div>
           <div class="Button">
-          	<p>Hola</p>
+          	<h1 class="Numbers">9</h1>
           </div>
           <div class="Button">
-          	<p>Hola</p>
+          	<h1 class="Symbols">*</h1>
           </div>
         </div>
         <div class="Row">
         	<div class="Button">
-          	<p>Hola</p>
+          	<h1 class="Numbers">4</h1>
           </div>
           <div class="Button">
-          	<p>Hola</p>
+          	<h1 class="Numbers">5</h1>
           </div>
           <div class="Button">
-          	<p>Hola</p>
+          	<h1 class="Numbers">6</h1>
           </div>
           <div class="Button">
-          	<p>Hola</p>
+          	<h1 class="Symbols">-</h1>
           </div>
         </div>
         <div class="Row">
         	<div class="Button">
-          	<p>Hola</p>
+          	<h1 class="Numbers">1</h1>
           </div>
           <div class="Button">
-          	<p>Hola</p>
+          	<h1 class="Numbers">2</h1>
           </div>
           <div class="Button">
-          	<p>Hola</p>
+          	<h1 class="Numbers">3</h1>
           </div>
           <div class="Button">
-          	<p>Hola</p>
+          	<h1 class="Symbols">+</h1>
           </div>
         </div>
         <div class="Row">
-        	<div class="Button">
-          	<p>Hola</p>
+        	<div class="Button" id="LongZero">
+          	<h1 class="Number">0</h1>
           </div>
           <div class="Button">
-          	<p>Hola</p>
+          	<h1 class="Number">.</h1>
           </div>
           <div class="Button">
-          	<p>Hola</p>
-          </div>
-          <div class="Button">
-          	<p>Hola</p>
+          	<h1 class="Symbols">=</h1>
           </div>
         </div>
       </div>
@@ -105,6 +102,7 @@
 					$("#Left, #Right").css("width", ($("body").width()-$("#Center").width())/2);
 					$(".Row").css("width", ($("#Center").width()));
 					$(".Button").css("width",(($(".Row").width())/5));
+					$("#LongZero").css("width",(($(".Row").width())/2.24));
 				}).trigger("resize");
 			} else if (window.screen.availWidth <= 500){
 				$("body").css("width", window.screen.availWidth);
