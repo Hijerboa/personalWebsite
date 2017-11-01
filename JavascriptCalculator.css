@@ -56,4 +56,10 @@
   border-color: red;
   border-style: solid; }
 
+h1 {
+  text-align: center; }
+
+.Lettered {
+  font-size: 45px; }
+
 /*# sourceMappingURL=JavascriptCalculator.css.map */
