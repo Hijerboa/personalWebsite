@@ -16,69 +16,69 @@
           <h3 align="right" id="ScreenWritingProblem">34+34+3535</h3>
         </div>
         <div class="Row">
-        	<div class="Button">
+        	<div class="Button" id="CE">
           	<h1 class="Lettered">CE</h1>
           </div>
-          <div class="Button">
+          <div class="Button" id="AC">
           	<h1 class="Lettered">AC</h1>
           </div>
-          <div class="Button">
+          <div class="Button" id="Backspace">
           	<h1 class="Symbols"><i class="fa fa-backward" aria-hidden="true" id="backwards"></i></h1>
           </div>
-          <div class="Button">
+          <div class="Button" id="/">
           	<h1 class="Symbols">/</h1>
           </div>
         </div>
         <div class="Row">
-        	<div class="Button">
+        	<div class="Button" id="7">
           	<h1 class="Numbers">7</h1>
           </div>
-          <div class="Button">
+          <div class="Button" id="8">
           	<h1 class="Numbers">8</h1>
           </div>
-          <div class="Button">
+          <div class="Button" id="9">
           	<h1 class="Numbers">9</h1>
           </div>
-          <div class="Button">
+          <div class="Button" id="*">
           	<h1 class="Symbols">*</h1>
           </div>
         </div>
         <div class="Row">
-        	<div class="Button">
+        	<div class="Button" id="4">
           	<h1 class="Numbers">4</h1>
           </div>
-          <div class="Button">
+          <div class="Button" id="5">
           	<h1 class="Numbers">5</h1>
           </div>
-          <div class="Button">
+          <div class="Button" id="6">
           	<h1 class="Numbers">6</h1>
           </div>
-          <div class="Button">
+          <div class="Button" id="-">
           	<h1 class="Symbols">-</h1>
           </div>
         </div>
         <div class="Row">
-        	<div class="Button">
+        	<div class="Button" id="1">
           	<h1 class="Numbers">1</h1>
           </div>
-          <div class="Button">
+          <div class="Button" id="2">
           	<h1 class="Numbers">2</h1>
           </div>
-          <div class="Button">
+          <div class="Button" id="3">
           	<h1 class="Numbers">3</h1>
           </div>
-          <div class="Button">
+          <div class="Button" id="+">
           	<h1 class="Symbols">+</h1>
           </div>
         </div>
         <div class="Row">
-        	<div class="Button" id="LongZero">
+        	<div class="Button LongZero" id="0">
           	<h1 class="Numbers">0</h1>
           </div>
-          <div class="Button">
+          <div class="Button" id=".">
           	<h1 class="Numbers">.</h1>
           </div>
-          <div class="Button">
+          <div class="Button" id="=">
           	<h1 class="Symbols">=</h1>
           </div>
         </div>
@@ -102,7 +102,7 @@
 					$("#Left, #Right").css("width", ($("body").width()-$("#Center").width())/2);
 					$(".Row").css("width", ($("#Center").width()));
 					$(".Button").css("width",(($(".Row").width())/5));
-					$("#LongZero").css("width",(($(".Row").width())/2.24));
+					$(".LongZero").css("width",(($(".Row").width())/2.24));
 				}).trigger("resize");
 			} else if (window.screen.availWidth <= 500){
 				$("body").css("width", window.screen.availWidth);
@@ -112,5 +112,6 @@
 				}).trigger("resize");
 			}
     });
+		
 	</script>
 </html>
