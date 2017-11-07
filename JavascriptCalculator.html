@@ -120,71 +120,76 @@
 	$("#0").click(function() {
 		currentItem.push("0");
 		currentProblem.push("0");
-		updateScreen(num);	
+		updateScreen("num");	
 	});
 	$("#1").click(function() {
 		currentItem.push("1");
 		currentProblem.push("1");
-		updateScreen(num);	
+		updateScreen("num");	
 	});
 	$("#2").click(function() {
 		currentItem.push("2");
 		currentProblem.push("2");
-		updateScreen(num);	
+		updateScreen("num");	
 	});
 	$("#3").click(function() {
 		currentItem.push("3");
 		currentProblem.push("3");
-		updateScreen(num);	
+		updateScreen("num");	
 	});
 	$("#4").click(function() {
 		currentItem.push("4");
 		currentProblem.push("4");
-		updateScreen(num);	
+		updateScreen("num");	
 	});
 	$("#5").click(function() {
 		currentItem.push("5");
 		currentProblem.push("5");
-		updateScreen(num);	
+		updateScreen("num");	
 	});
 	$("#6").click(function() {
 		currentItem.push("6");
 		currentProblem.push("6");
-		updateScreen(num);	
+		updateScreen("num");	
 	});
 	$("#7").click(function() {
 		currentItem.push("7");
 		currentProblem.push("7");
-		updateScreen(num);	
+		updateScreen("num");	
 	});
 	$("#8").click(function() {
 		currentItem.push("8");
 		currentProblem.push("8");
-		updateScreen(num);	
+		updateScreen("num");	
 	});
 	$("#9").click(function() {
 		currentItem.push("9");
 		currentProblem.push("9");
-		updateScreen(num);	
+		updateScreen("num");	
 	});
 	$("#CE").click(function() {
 		currentItem = [];
-		updateScreen(clear);
+		updateScreen("clear");
 	});
 	$("#AC").click(function() {
 		currentItem=[];
 		currentProblem=[];
-		updateScreen(true);
+		updateScreen("clear");
+	});
+	$("#Backspace").click(function() {
+		currentItem.pop();
+		currentProblem.pop();
+		updateScreen("clear");
 	});
 	function updateScreen(numOrNo){
-		if(num == numOrNo) {
+		if(numOrNo == "num") {
 			currentItemString = currentItem.join("");
 			$("#ScreenWritingAnswer").html(currentItemString);
 			currentProblemString = currentProblem.join("");
 			$("#ScreenWritingProblem").html(currentProblemString);	
-		}else if(clear == numOrNo){
-			$("#ScreenWritingAnswer").html(currentItemString);
-			$("#ScreenWritingProblem").html(currentProblemString);	
+		}else if(numOrNo == "clear"){
+			$("#ScreenWritingAnswer").html(currentItem);
+			$("#ScreenWritingProblem").html(currentProblem);	
 		}
 	}
 	</script>
