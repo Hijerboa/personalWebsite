@@ -120,58 +120,70 @@
 	$("#0").click(function() {
 		currentItem.push("0");
 		currentProblem.push("0");
-		updateScreen(true);	
+		updateScreen(num);	
 	});
 	$("#1").click(function() {
 		currentItem.push("1");
 		currentProblem.push("1");
-		updateScreen(true);	
+		updateScreen(num);	
 	});
 	$("#2").click(function() {
 		currentItem.push("2");
 		currentProblem.push("2");
-		updateScreen(true);	
+		updateScreen(num);	
 	});
 	$("#3").click(function() {
 		currentItem.push("3");
 		currentProblem.push("3");
-		updateScreen(true);	
+		updateScreen(num);	
 	});
 	$("#4").click(function() {
 		currentItem.push("4");
 		currentProblem.push("4");
-		updateScreen(true);	
+		updateScreen(num);	
 	});
 	$("#5").click(function() {
 		currentItem.push("5");
 		currentProblem.push("5");
-		updateScreen(true);	
+		updateScreen(num);	
 	});
 	$("#6").click(function() {
 		currentItem.push("6");
 		currentProblem.push("6");
-		updateScreen(true);	
+		updateScreen(num);	
 	});
 	$("#7").click(function() {
 		currentItem.push("7");
 		currentProblem.push("7");
-		updateScreen(true);	
+		updateScreen(num);	
 	});
 	$("#8").click(function() {
 		currentItem.push("8");
 		currentProblem.push("8");
-		updateScreen(true);	
+		updateScreen(num);	
 	});
 	$("#9").click(function() {
 		currentItem.push("9");
 		currentProblem.push("9");
-		updateScreen(true);	
+		updateScreen(num);	
+	});
+	$("#CE").click(function() {
+		currentItem = [];
+		updateScreen(clear);
+	});
+	$("#AC").click(function() {
+		currentItem=[];
+		currentProblem=[];
+		updateScreen(true);
 	});
 	function updateScreen(numOrNo){
-		if(true == numOrNo) {
+		if(num == numOrNo) {
 			currentItemString = currentItem.join("");
 			$("#ScreenWritingAnswer").html(currentItemString);
 			currentProblemString = currentProblem.join("");
+			$("#ScreenWritingProblem").html(currentProblemString);	
+		}else if(clear == numOrNo){
+			$("#ScreenWritingAnswer").html(currentItemString);
 			$("#ScreenWritingProblem").html(currentProblemString);	
 		}
 	}
