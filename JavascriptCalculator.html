@@ -119,53 +119,53 @@
 		$("#ScreenWritingProblem").html("");
     });
 	$("#0").click(function() {
-		currentItem.push("0");
-		currentProblem.push("0");
+		currentItem.push(0);
+		currentProblem.push(0);
 		updateScreen("num");	
 	});
 	$("#1").click(function() {
-		currentItem.push("1");
-		currentProblem.push("1");
+		currentItem.push(1);
+		currentProblem.push(1);
 		updateScreen("num");	
 	});
 	$("#2").click(function() {
-		currentItem.push("2");
-		currentProblem.push("2");
+		currentItem.push(2);
+		currentProblem.push(2);
 		updateScreen("num");	
 	});
 	$("#3").click(function() {
-		currentItem.push("3");
-		currentProblem.push("3");
+		currentItem.push(3);
+		currentProblem.push(3);
 		updateScreen("num");	
 	});
 	$("#4").click(function() {
-		currentItem.push("4");
-		currentProblem.push("4");
+		currentItem.push(4);
+		currentProblem.push(4);
 		updateScreen("num");	
 	});
 	$("#5").click(function() {
-		currentItem.push("5");
-		currentProblem.push("5");
+		currentItem.push(5);
+		currentProblem.push(5);
 		updateScreen("num");	
 	});
 	$("#6").click(function() {
-		currentItem.push("6");
-		currentProblem.push("6");
+		currentItem.push(6);
+		currentProblem.push(6);
 		updateScreen("num");	
 	});
 	$("#7").click(function() {
-		currentItem.push("7");
-		currentProblem.push("7");
+		currentItem.push(7);
+		currentProblem.push(7);
 		updateScreen("num");	
 	});
 	$("#8").click(function() {
-		currentItem.push("8");
-		currentProblem.push("8");
+		currentItem.push(8);
+		currentProblem.push(8);
 		updateScreen("num");	
 	});
 	$("#9").click(function() {
-		currentItem.push("9");
-		currentProblem.push("9");
+		currentItem.push(9);
+		currentProblem.push(9);
 		updateScreen("num");	
 	});
 	$("#CE").click(function() {
@@ -184,13 +184,16 @@
 	});
 	$("#plus").click(function() {
 		currentItemString = currentItem.join("");
-		console.log("plus");
-		if(pastNumber = ""){
+		//console.log(currentItemString);
+		if(pastNumber == ""){
+			//console.log("plus");
 			pastNumber = currentItemString;
-			total = pastNumber;	
+			total = Number(currentItemString) + Number(pastNumber);
 			currentItemString = [];
 		} else {
-			total = currentItemString + pastNumber;
+			//console.log("rip its a plus");
+			total = Number(currentItemString) + Number(pastNumber);
+			console.log(total);
 			pastNumber = currentItemString;
 			currentItemString = [];
 			$("#ScreenWritingAnswer").html(total);
