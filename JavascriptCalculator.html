@@ -25,7 +25,7 @@
           <div class="Button" id="Backspace">
           	<h1 class="Symbols"><i class="fa fa-backward" aria-hidden="true" id="backwards"></i></h1>
           </div>
-          <div class="Button" id="/">
+          <div class="Button" id="divide">
           	<h1 class="Symbols">/</h1>
           </div>
         </div>
@@ -39,7 +39,7 @@
           <div class="Button" id="9">
           	<h1 class="Numbers">9</h1>
           </div>
-          <div class="Button" id="*">
+          <div class="Button" id="mult">
           	<h1 class="Symbols">*</h1>
           </div>
         </div>
@@ -170,11 +170,14 @@
 	});
 	$("#CE").click(function() {
 		currentItem = [];
+		pastNumber = "";
 		updateScreen("clear");
 	});
 	$("#AC").click(function() {
 		currentItem=[];
 		currentProblem=[];
+		pastNumber = "";
+		total = 0;
 		updateScreen("clear");
 	});
 	$("#Backspace").click(function() {
@@ -190,10 +193,63 @@
 			currentProblem.push("+");
 			$("#ScreenWritingProblem").html(currentProblem.join(""));
 		} else {
-			total = Number(currentItemString) + Number(pastNumber);
+			total = Number(pastNumber) + Number(currentItemString);
 			pastNumber = total;
 			currentItem = [];
 			$("#ScreenWritingAnswer").html(total);
+			currentProblem.push("+");
+			$("#ScreenWritingProblem").html(currentProblem.join(""));
+			console.log(total);
+		}
+	});
+	$("#-").click(function() {
+		currentItemString = currentItem.join("");
+		if(pastNumber == ""){
+			pastNumber = Number(currentItemString);
+			currentItem = [];
+			currentProblem.push("-");
+			$("#ScreenWritingProblem").html(currentProblem.join(""));
+		} else {
+			total = Number(pastNumber) - Number(currentItemString);
+			pastNumber = total;
+			currentItem = [];
+			$("#ScreenWritingAnswer").html(total);
+			currentProblem.push("-");
+			$("#ScreenWritingProblem").html(currentProblem.join(""));
+			console.log(total);
+		}
+	});
+	$("#mult").click(function() {
+		currentItemString = currentItem.join("");
+		if(pastNumber == ""){
+			pastNumber = Number(currentItemString);
+			currentItem = [];
+			currentProblem.push("*");
+			$("#ScreenWritingProblem").html(currentProblem.join(""));
+		} else {
+			total = Number(pastNumber) * Number(currentItemString);
+			pastNumber = total;
+			currentItem = [];
+			$("#ScreenWritingAnswer").html(total);
+			currentProblem.push("*");
+			$("#ScreenWritingProblem").html(currentProblem.join(""));
+			console.log(total);
+		}
+	});
+	$("#divide").click(function() {
+		currentItemString = currentItem.join("");
+		if(pastNumber == ""){
+			pastNumber = Number(currentItemString);
+			currentItem = [];
+			currentProblem.push("/");
+			$("#ScreenWritingProblem").html(currentProblem.join(""));
+		} else {
+			total = Number(pastNumber) / Number(currentItemString);
+			pastNumber = total;
+			currentItem = [];
+			$("#ScreenWritingAnswer").html(total);
+			currentProblem.push("/");
+			$("#ScreenWritingProblem").html(currentProblem.join(""));
 			console.log(total);
 		}
 	});
