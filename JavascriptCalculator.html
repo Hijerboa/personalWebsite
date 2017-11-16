@@ -53,7 +53,7 @@
           <div class="Button" id="6">
           	<h1 class="Numbers">6</h1>
           </div>
-          <div class="Button" id="-">
+          <div class="Button" id="subtr">
           	<h1 class="Symbols">-</h1>
           </div>
         </div>
@@ -78,7 +78,7 @@
           <div class="Button" id=".">
           	<h1 class="Numbers">.</h1>
           </div>
-          <div class="Button" id="=">
+          <div class="Button" id="equal">
           	<h1 class="Symbols">=</h1>
           </div>
         </div>
@@ -94,7 +94,7 @@
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
   <script language = "javascript">
-  	var solution, currentProblemString, currentItemString, total;
+  	var solution, currentProblemString, currentItemString, total, lastOp;
 	var pastNumber = "";
 	var currentProblem = [];
 	var currentItem = [];
@@ -186,6 +186,7 @@
 		updateScreen("clear");
 	});
 	$("#plus").click(function() {
+		lastOp = "plus";
 		currentItemString = currentItem.join("");
 		if(pastNumber == ""){
 			pastNumber = Number(currentItemString);
@@ -202,7 +203,8 @@
 			console.log(total);
 		}
 	});
-	$("#-").click(function() {
+	$("#subtr").click(function() {
+		lastOp = "subtr";
 		currentItemString = currentItem.join("");
 		if(pastNumber == ""){
 			pastNumber = Number(currentItemString);
@@ -220,6 +222,7 @@
 		}
 	});
 	$("#mult").click(function() {
+		lastOp = "mult";
 		currentItemString = currentItem.join("");
 		if(pastNumber == ""){
 			pastNumber = Number(currentItemString);
@@ -237,6 +240,7 @@
 		}
 	});
 	$("#divide").click(function() {
+		lastOp = "divide";
 		currentItemString = currentItem.join("");
 		if(pastNumber == ""){
 			pastNumber = Number(currentItemString);
@@ -252,6 +256,9 @@
 			$("#ScreenWritingProblem").html(currentProblem.join(""));
 			console.log(total);
 		}
+	});
+	$("#equal").click(function() {
+		
 	});
 	function updateScreen(numOrNo){
 		if(numOrNo == "num") {
