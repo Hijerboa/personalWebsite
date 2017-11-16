@@ -94,7 +94,7 @@
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
   <script language = "javascript">
-  	var solution, total;
+  	var solution, currentProblemString, currentItemString, total;
 	var pastNumber = "";
 	var currentProblem = [];
 	var currentItem = [];
@@ -184,19 +184,17 @@
 	});
 	$("#plus").click(function() {
 		currentItemString = currentItem.join("");
-		//console.log(currentItemString);
 		if(pastNumber == ""){
-			//console.log("plus");
-			pastNumber = currentItemString;
-			total = Number(currentItemString) + Number(pastNumber);
-			currentItemString = [];
+			pastNumber = Number(currentItemString);
+			currentItem = [];
+			currentProblem.push("+");
+			$("#ScreenWritingProblem").html(currentProblem.join(""));
 		} else {
-			//console.log("rip its a plus");
 			total = Number(currentItemString) + Number(pastNumber);
-			console.log(total);
-			pastNumber = currentItemString;
-			currentItemString = [];
+			pastNumber = total;
+			currentItem = [];
 			$("#ScreenWritingAnswer").html(total);
+			console.log(total);
 		}
 	});
 	function updateScreen(numOrNo){
