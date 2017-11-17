@@ -258,7 +258,44 @@
 		}
 	});
 	$("#equal").click(function() {
-		
+		switch (lastOp) {
+			case "divide": 
+				total = Number(pastNumber) / Number(currentItemString);
+				pastNumber = total;
+				currentItem = [];
+				$("#ScreenWritingAnswer").html(total);
+				currentProblem.push("=");
+				currentProblem.push(total);
+				$("#ScreenWritingProblem").html(currentProblem.join(""));
+				break;
+			case "mult":
+				total = Number(pastNumber) * Number(currentItemString);
+				pastNumber = total;
+				currentItem = [];
+				$("#ScreenWritingAnswer").html(total);
+				currentProblem.push("=");
+				currentProblem.push(total);
+				$("#ScreenWritingProblem").html(currentProblem.join(""));
+				break;
+			case "subtr":
+				total = Number(pastNumber) - Number(currentItemString);
+				pastNumber = total;
+				currentItem = [];
+				$("#ScreenWritingAnswer").html(total);
+				currentProblem.push("=");
+				currentProblem.push(total);
+				$("#ScreenWritingProblem").html(currentProblem.join(""));
+				break;
+			case "plus":
+				total = Number(pastNumber) + Number(currentItemString);
+				pastNumber = total;
+				currentItem = [];
+				$("#ScreenWritingAnswer").html(total);
+				currentProblem.push("=");
+				currentProblem.push(total);
+				$("#ScreenWritingProblem").html(currentProblem.join(""));
+				break;
+		}
 	});
 	function updateScreen(numOrNo){
 		if(numOrNo == "num") {
