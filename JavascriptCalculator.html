@@ -111,52 +111,52 @@
 	$("#0").click(function() {
 		currentItem.push(0);
 		currentProblem.push(0);
-		updateScreen("num");	
+		updateScreen("num");
 	});
 	$("#1").click(function() {
 		currentItem.push(1);
 		currentProblem.push(1);
-		updateScreen("num");	
+		updateScreen("num");
 	});
 	$("#2").click(function() {
 		currentItem.push(2);
 		currentProblem.push(2);
-		updateScreen("num");	
+		updateScreen("num");
 	});
 	$("#3").click(function() {
 		currentItem.push(3);
 		currentProblem.push(3);
-		updateScreen("num");	
+		updateScreen("num");
 	});
 	$("#4").click(function() {
 		currentItem.push(4);
 		currentProblem.push(4);
-		updateScreen("num");	
+		updateScreen("num");
 	});
 	$("#5").click(function() {
 		currentItem.push(5);
 		currentProblem.push(5);
-		updateScreen("num");	
+		updateScreen("num");
 	});
 	$("#6").click(function() {
 		currentItem.push(6);
 		currentProblem.push(6);
-		updateScreen("num");	
+		updateScreen("num");
 	});
 	$("#7").click(function() {
 		currentItem.push(7);
 		currentProblem.push(7);
-		updateScreen("num");	
+		updateScreen("num");
 	});
 	$("#8").click(function() {
 		currentItem.push(8);
 		currentProblem.push(8);
-		updateScreen("num");	
+		updateScreen("num");
 	});
 	$("#9").click(function() {
 		currentItem.push(9);
 		currentProblem.push(9);
-		updateScreen("num");	
+		updateScreen("num");
 	});
 	$("#AC").click(function() {
 		currentItem=[];
@@ -170,125 +170,14 @@
 		currentProblem.pop();
 		updateScreen("clear");
 	});
-	$("#plus").click(function() {
-		lastOp = "plus";
-		currentItemString = currentItem.join("");
-		if(pastNumber == ""){
-			pastNumber = Number(currentItemString);
-			currentItem = [];
-			currentProblem.push("+");
-			$("#ScreenWritingProblem").html(currentProblem.join(""));
-		} else {
-			total = Number(pastNumber) + Number(currentItemString);
-			pastNumber = total;
-			currentItem = [];
-			$("#ScreenWritingAnswer").html(total);
-			currentProblem.push("+");
-			$("#ScreenWritingProblem").html(currentProblem.join(""));
-			console.log(total);
-		}
-	});
-	$("#subtr").click(function() {
-		lastOp = "subtr";
-		currentItemString = currentItem.join("");
-		if(pastNumber == ""){
-			pastNumber = Number(currentItemString);
-			currentItem = [];
-			currentProblem.push("-");
-			$("#ScreenWritingProblem").html(currentProblem.join(""));
-		} else {
-			total = Number(pastNumber) - Number(currentItemString);
-			pastNumber = total;
-			currentItem = [];
-			$("#ScreenWritingAnswer").html(total);
-			currentProblem.push("-");
-			$("#ScreenWritingProblem").html(currentProblem.join(""));
-			console.log(total);
-		}
-	});
-	$("#mult").click(function() {
-		lastOp = "mult";
-		currentItemString = currentItem.join("");
-		if(pastNumber == ""){
-			pastNumber = Number(currentItemString);
-			currentItem = [];
-			currentProblem.push("*");
-			$("#ScreenWritingProblem").html(currentProblem.join(""));
-		} else {
-			total = Number(pastNumber) * Number(currentItemString);
-			pastNumber = total;
-			currentItem = [];
-			$("#ScreenWritingAnswer").html(total);
-			currentProblem.push("*");
-			$("#ScreenWritingProblem").html(currentProblem.join(""));
-			console.log(total);
-		}
-	});
-	$("#divide").click(function() {
-		lastOp = "divide";
-		currentItemString = currentItem.join("");
-		if(pastNumber == ""){
-			pastNumber = Number(currentItemString);
-			currentItem = [];
-			currentProblem.push("/");
-			$("#ScreenWritingProblem").html(currentProblem.join(""));
-		} else {
-			total = Number(pastNumber) / Number(currentItemString);
-			pastNumber = total;
-			currentItem = [];
-			$("#ScreenWritingAnswer").html(total);
-			currentProblem.push("/");
-			$("#ScreenWritingProblem").html(currentProblem.join(""));
-			console.log(total);
-		}
-	});
-	$("#equal").click(function() {
-		switch (lastOp) {
-			case "divide": 
-				total = Number(pastNumber) / Number(currentItemString);
-				pastNumber = total;
-				currentItem = [];
-				$("#ScreenWritingAnswer").html(total);
-				currentProblem.push("=");
-				currentProblem.push(total);
-				$("#ScreenWritingProblem").html(currentProblem.join(""));
-				break;
-			case "mult":
-				total = Number(pastNumber) * Number(currentItemString);
-				pastNumber = total;
-				currentItem = [];
-				$("#ScreenWritingAnswer").html(total);
-				currentProblem.push("=");
-				currentProblem.push(total);
-				$("#ScreenWritingProblem").html(currentProblem.join(""));
-				break;
-			case "subtr":
-				total = Number(pastNumber) - Number(currentItemString);
-				pastNumber = total;
-				currentItem = [];
-				$("#ScreenWritingAnswer").html(total);
-				currentProblem.push("=");
-				currentProblem.push(total);
-				$("#ScreenWritingProblem").html(currentProblem.join(""));
-				break;
-			case "plus":
-				total = Number(pastNumber) + Number(currentItemString);
-				pastNumber = total;
-				currentItem = [];
-				$("#ScreenWritingAnswer").html(total);
-				currentProblem.push("=");
-				currentProblem.push(total);
-				$("#ScreenWritingProblem").html(currentProblem.join(""));
-				break;
-		}
-	});
+	
 	function updateScreen(numOrNo){
 		if(numOrNo == "num") {
 			$("#ScreenWritingAnswer").html(currentItem.join(""));
-			$("#ScreenWritingProblem").html(currentProblem.join(""));	
+			$("#ScreenWritingProblem").html(currentProblem.join(""));
 		}else if(numOrNo == "clear"){
 			$("#ScreenWritingAnswer").html(currentItem);
-			$("#ScreenWritingProblem").html(currentProblem);	
+			$("#ScreenWritingProblem").html(currentProblem);
 		}
 	}
 	</script>
