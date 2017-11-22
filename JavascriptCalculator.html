@@ -95,6 +95,13 @@
 	var pastNumber = "";
 	var currentProblem = [];
 	var currentItem = [];
+  function doOperation(whatOp){
+    switch (whatOP){
+      case "plus":
+        console.log("rip");
+        break;
+    }
+  }
 		$(document).ready(function() {
 			console.log(window.screen.availWidth);
 			$('#Center').css("width", 500);
@@ -170,7 +177,24 @@
 		currentProblem.pop();
 		updateScreen("clear");
 	});
-	
+	$("#plus").click(function () {
+    if("" == lastOperator){
+      lastOperator = "plus";
+      firstNumber = currentItem.join("");
+    } else if ("plus" == lastOperator){
+      doOperation("plus");
+      lastOperator = "plus";
+    } else if ("mult" == lastOperator){
+      doOperation("mult");
+      lastOperator = "plus";
+    } else if ("divide" == lastOperator){
+      doOperation("divide");
+      lastOperator = "plus";
+    } else if ("subtr" == lastOperator){
+      doOperation("subtr");
+      lastOperator = "plus";
+    }
+  });
 	function updateScreen(numOrNo){
 		if(numOrNo == "num") {
 			$("#ScreenWritingAnswer").html(currentItem.join(""));
