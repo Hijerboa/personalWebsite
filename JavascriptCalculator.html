@@ -16,9 +16,6 @@
           <h3 align="right" id="ScreenWritingProblem">34+34+3535</h3>
         </div>
         <div class="Row">
-        	<div class="Button" id="CE">
-          	<h1 class="Lettered">CE</h1>
-          </div>
           <div class="Button" id="AC">
           	<h1 class="Lettered">AC</h1>
           </div>
@@ -75,7 +72,7 @@
         	<div class="Button LongZero" id="0">
           	<h1 class="Numbers">0</h1>
           </div>
-          <div class="Button" id=".">
+          <div class="Button" id="dot">
           	<h1 class="Numbers">.</h1>
           </div>
           <div class="Button" id="equal">
@@ -100,21 +97,14 @@
 	var currentItem = [];
 		$(document).ready(function() {
 			console.log(window.screen.availWidth);
-      if(window.screen.availWidth > 500){
-				$('#Center').css("width", 500);
+			$('#Center').css("width", 500);
 				$(window).on("resize",function() {
 					$("#Left, #Right").css("width", ($("body").width()-$("#Center").width())/2);
 					$(".Row").css("width", ($("#Center").width()));
 					$(".Button").css("width",(($(".Row").width())/5));
 					$(".LongZero").css("width",(($(".Row").width())/2.24));
+					$("#AC").css("width",(($(".Row").width())/2.24));
 				}).trigger("resize");
-			} else if (window.screen.availWidth <= 500){
-				$("body").css("width", window.screen.availWidth);
-				$(window).on("resize",function() {
-					$("#Left, #Right").css("width", 0);
-					$('#Center').css("width", ($("body").width()));
-				}).trigger("resize");
-			}
 		$("#ScreenWritingAnswer").html("");
 		$("#ScreenWritingProblem").html("");
     });
@@ -167,11 +157,6 @@
 		currentItem.push(9);
 		currentProblem.push(9);
 		updateScreen("num");	
-	});
-	$("#CE").click(function() {
-		currentItem = [];
-		pastNumber = "";
-		updateScreen("clear");
 	});
 	$("#AC").click(function() {
 		currentItem=[];
