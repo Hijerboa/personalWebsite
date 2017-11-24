@@ -306,6 +306,11 @@
     currentProblem.push(total);
     updateScreen("num");
   });
+  $("#dot").click(function() {
+    currentItem.push(".");
+    currentProblem.push(".");
+    updateScreen("num");
+  });
 	function updateScreen(numOrNo){
 		if(numOrNo == "num") {
 			$("#ScreenWritingAnswer").html(currentItem.join(""));
