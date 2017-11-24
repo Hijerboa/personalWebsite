@@ -115,11 +115,13 @@
         firstNumber = total;
         break;
       case "divide":
-        total = firstNuber / secondNumber;
+        total = firstNumber / secondNumber;
         firstNumber = total;
         break;
     }
     console.log(total);
+    currentItem = [];
+    currentItem.push(total);
   }
 		$(document).ready(function() {
 			console.log(window.screen.availWidth);
@@ -189,6 +191,7 @@
 		currentProblem=[];
 		pastNumber = "";
 		total = 0;
+    lastOperator = "";
 		updateScreen("clear");
 	});
 	$("#Backspace").click(function() {
@@ -197,6 +200,7 @@
 		updateScreen("clear");
 	});
 	$("#plus").click(function () {
+    currentProblem.push("+");
     if("" == lastOperator){
       lastOperator = "plus";
       firstNumber = Number(currentItem.join(""));
@@ -206,16 +210,101 @@
     } else if ("plus" == lastOperator){
       doOperation("plus");
       lastOperator = "plus";
+      currentItem = [];
     } else if ("mult" == lastOperator){
       doOperation("mult");
       lastOperator = "plus";
+      currentItem = [];
     } else if ("divide" == lastOperator){
       doOperation("divide");
       lastOperator = "plus";
+      currentItem = [];
     } else if ("subtr" == lastOperator){
       doOperation("subtr");
       lastOperator = "plus";
+      currentItem = [];
     }
+  });
+  $("#mult").click(function () {
+    currentProblem.push("*");
+    if("" == lastOperator){
+      lastOperator = "mult";
+      firstNumber = Number(currentItem.join(""));
+      currentItem = [];
+      updateScreen("clear");
+    } else if ("plus" == lastOperator){
+      doOperation("plus");
+      lastOperator = "mult";
+      currentItem = [];
+    } else if ("mult" == lastOperator){
+      doOperation("mult");
+      lastOperator = "mult";
+      currentItem = [];
+    } else if ("divide" == lastOperator){
+      doOperation("divide");
+      lastOperator = "mult";
+      currentItem = [];
+    } else if ("subtr" == lastOperator){
+      doOperation("subtr");
+      lastOperator = "mult";
+      currentItem = [];
+    }
+  });
+  $("#subtr").click(function () {
+    currentProblem.push("-");
+    if("" == lastOperator){
+      lastOperator = "subtr";
+      firstNumber = Number(currentItem.join(""));
+      currentItem = [];
+      updateScreen("clear");
+    } else if ("plus" == lastOperator){
+      doOperation("plus");
+      lastOperator = "subtr";
+      currentItem = [];
+    } else if ("mult" == lastOperator){
+      doOperation("mult");
+      lastOperator = "subtr";
+      currentItem = [];
+    } else if ("divide" == lastOperator){
+      doOperation("divide");
+      lastOperator = "subtr";
+      currentItem = [];
+    } else if ("subtr" == lastOperator){
+      doOperation("subtr");
+      lastOperator = "subtr";
+      currentItem = [];
+    }
+  });
+  $("#divide").click(function () {
+    currentProblem.push("/");
+    if("" == lastOperator){
+      lastOperator = "divide";
+      firstNumber = Number(currentItem.join(""));
+      currentItem = [];
+      updateScreen("clear");
+    } else if ("plus" == lastOperator){
+      doOperation("plus");
+      lastOperator = "divide";
+      currentItem = [];
+    } else if ("mult" == lastOperator){
+      doOperation("mult");
+      lastOperator = "divide";
+      currentItem = [];
+    } else if ("divide" == lastOperator){
+      doOperation("divide");
+      lastOperator = "divide";
+      currentItem = [];
+    } else if ("subtr" == lastOperator){
+      doOperation("subtr");
+      lastOperator = "divide";
+      currentItem = [];
+    }
+  });
+  $("#equal").click(function () {
+    doOperation(lastOperator);
+    currentProblem.push("=");
+    currentProblem.push(total);
+    updateScreen("num");
   });
 	function updateScreen(numOrNo){
 		if(numOrNo == "num") {
