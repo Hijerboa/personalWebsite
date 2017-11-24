@@ -308,7 +308,7 @@
   });
   $("#Backspace").click(function () {
     if((currentProblem[(currentProblem.length - 1)] == "*") ||(currentProblem[(currentProblem.length - 1)] == "/") ||(currentProblem[(currentProblem.length - 1)] == "+") || (currentProblem[(currentProblem.length - 1)] == "-")){
-      for(i=(currentProblem.length - 1); i > 0; i--){
+      for(i=(currentProblem.length - 1); i >= 0; i--){
         if("+" == currentProblem[i]){
           lastOperator = "plus";
           break;
@@ -321,9 +321,11 @@
         } else if ("*" == currentProblem[i]){
           lastOperator = "mult";
           break;
+        } else if (i == 0){
+          lastOperator = "";
+          break;
         }
       }
-      lastOperator = "";
       currentItem.pop();
       currentProblem.pop();
     } else {
