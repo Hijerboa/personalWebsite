@@ -194,11 +194,6 @@
     lastOperator = "";
 		updateScreen("clear");
 	});
-	$("#Backspace").click(function() {
-		currentItem.pop();
-		currentProblem.pop();
-		updateScreen("clear");
-	});
 	$("#plus").click(function () {
     currentProblem.push("+");
     if("" == lastOperator){
@@ -313,13 +308,36 @@
   });
   $("#Backspace").click(function () {
     if((currentProblem[(currentProblem.length - 1)] == "*") ||(currentProblem[(currentProblem.length - 1)] == "/") ||(currentProblem[(currentProblem.length - 1)] == "+") || (currentProblem[(currentProblem.length - 1)] == "-")){
-      
+      for(i=(currentProblem.length - 1); i > 0; i--){
+        if("+" == currentProblem[i]){
+          lastOperator = "plus";
+          break;
+        } else if ("-" == currentProblem[i]){
+          lastOperator = "subtr";
+          break;
+        } else if ("/" == currentProblem[i]){
+          lastOperator = "divide";
+          break;
+        } else if ("*" == currentProblem[i]){
+          lastOperator = "mult";
+          break;
+        }
+      }
+      lastOperator = "";
+      currentItem.pop();
+      currentProblem.pop();
+    } else {
+      console.log(currentItem);
+      currentItem.pop();
+      console.log(currentItem);
+      currentProblem.pop();
     }
+    updateScreen("clear");
   });
 	function updateScreen(numOrNo){
 		if(numOrNo == "num") {
-			$("#ScreenWritingAnswer").html(currentItem.join(""));
-			$("#ScreenWritingProblem").html(currentProblem.join(""));
+			$("#ScreenWritingAnswer").html(currentItem);
+			$("#ScreenWritingProblem").html(currentProblem);
 		}else if(numOrNo == "clear"){
 			$("#ScreenWritingAnswer").html(currentItem);
 			$("#ScreenWritingProblem").html(currentProblem);
