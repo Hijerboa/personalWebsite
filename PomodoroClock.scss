@@ -1,15 +1,23 @@
-#controlDiv {
-  position: relative;
-}
-p {
-  text-align: center;
-}
 #setterDiv {
-  background-color: red;
+  height: 98vh;
+  position: relative;
+  background-color: black;
 }
 #timerDiv {
   background-color: blue;
 }
 #controlDiv {
   background-color: green;
+}
+#topDivLeft{
+  background-color: black;
+  height: 25vh;
+}
+#middleDivLeft{
+  background-color: black;
+  height: 7vh;
+}
+#pControlMinus, #pControlPlus, #pControlTimer, #pomodoroName, #breakName, #bControlMinus, #bControlPlus, #bControlTimer{
+  background-color: white;
+  border-radius: 15px;
 }
