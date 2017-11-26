@@ -1,7 +1,7 @@
 {
 "version": 3,
-"mappings": "",
-"sources": [],
+"mappings": "AAAA,WAAY;EACV,QAAQ,EAAE,QAAQ;;AAEpB,CAAE;EACA,UAAU,EAAE,MAAM;;AAEpB,UAAW;EACT,gBAAgB,EAAE,GAAG;;AAEvB,SAAU;EACR,gBAAgB,EAAE,IAAI;;AAExB,WAAY;EACV,gBAAgB,EAAE,KAAK",
+"sources": ["PomodoroClock.scss"],
 "names": [],
 "file": "PomodoroClock.css"
 }
