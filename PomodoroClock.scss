@@ -1,5 +1,5 @@
 #setterDiv {
-  height: 98vh;
+  height: 100vh;
   position: relative;
   background-color: black;
 }
@@ -7,17 +7,27 @@
   background-color: blue;
 }
 #controlDiv {
-  background-color: green;
+  background-color: black;
 }
 #topDivLeft{
   background-color: black;
   height: 25vh;
 }
+#topDivRight{
+  background-color: black;
+  height: 35vh;
+}
 #middleDivLeft{
   background-color: black;
   height: 7vh;
 }
-#pControlMinus, #pControlPlus, #pControlTimer, #pomodoroName, #breakName, #bControlMinus, #bControlPlus, #bControlTimer{
+#startStop{
+  height: 10vh;
+}
+#startStopText{
+  font-size: 200%;
+}
+#pControlMinus, #pControlPlus, #pControlTimer, #pomodoroName, #breakName, #bControlMinus, #bControlPlus, #bControlTimer, #startStop{
   background-color: white;
   border-radius: 15px;
 }
