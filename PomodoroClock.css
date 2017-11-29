@@ -4,7 +4,7 @@
   background-color: black; }
 
 #timerDiv {
-  background-color: blue; }
+  background-color: black; }
 
 #controlDiv {
   background-color: black; }
@@ -20,6 +20,14 @@
 #middleDivLeft {
   background-color: black;
   height: 7vh; }
+
+#topDivMiddle {
+  background-color: black;
+  height: 35vh; }
+
+#pomodoroTimerName, #pomodoroTimer {
+  color: white;
+  text-align: center; }
 
 #startStop {
   height: 10vh; }
