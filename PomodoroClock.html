@@ -160,13 +160,17 @@
   });
   $("#startStop").click(function(){
     if(running == "false"){
-      if(isPaused == "false"){
-        running = "true";
-      }
-    } else if(isRunning == "true"){
+      running = "true";
+      countdown();
+    } else if(running == "true"){
       running = "false";
       adjustTime();
     }
   });
+  function countdown(){
+    setTimeout(function() {
+
+    }, 1000);
+  }
 </script>
 </html>
