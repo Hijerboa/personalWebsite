@@ -95,7 +95,7 @@
           <div class="col-md-2">
           </div>
           <div class="col-md-8" id="startStop">
-            <h1 align="center" id="startStopText">Start <i class="fa fa-flag-checkered fa-3x" aria-hidden="true"></i></h1>
+            <h1 align="center" id="startStopText">Start <i class="fa fa-flag-checkered fa-3x" aria-hidden=true></i></h1>
           </div>
           <div class="col-md-2">
           </div>
@@ -123,8 +123,9 @@
   var timerBMin = 5;
   var secondsRemainingB, secondsRemaningP, clockMinutes, clockSeconds;
   var currentSession = "Pomodoro"
-  var isPaused = "false";
-  var running = "false";
+  var isPaused = false;
+  var running = false;
+  var stage = "pomodoro";
   $(document).ready(function() {
     adjustTime();
   });
@@ -133,6 +134,12 @@
     secondsRemainingB = (timerBMin * 60);
     $("#pomodoroTimerName").text("Pomodoro");
     $("#pomodoroTimer").text(timerPMin + ":00");
+  }
+  function adjustTimeB(){
+    secondsRemaningP = (timerPMin * 60);
+    secondsRemainingB = (timerBMin * 60);
+    $("#pomodoroTimerName").text("Break");
+    $("#pomodoroTimer").text(timerBMin + ":00");
   }
   $("#pControlMinus").click(function(){
     if(timerPMin > 1){
@@ -159,18 +166,57 @@
     adjustTime;
   });
   $("#startStop").click(function(){
-    if(running == "false"){
-      running = "true";
+    console.log(running);
+    if(running == false){
+      running = true;
       countdown();
-    } else if(running == "true"){
-      running = "false";
-      adjustTime();
+    } else if(running == true){
+      running = false;
+      setTimeout(function() {
+        adjustTime();
+      }, 1000);
     }
   });
   function countdown(){
-    setTimeout(function() {
-
-    }, 1000);
+    if(isPaused == false && running == true){
+      setTimeout(function() {
+        if("pomodoro" == stage){
+          secondsRemaningP--;
+          clockMinutes = (Math.floor(secondsRemaningP/60));
+          clockSeconds = (secondsRemaningP % 60);
+          if(clockSeconds < 10){
+            clockSeconds = ("0" + clockSeconds).slice(-2);
+          }
+          $("#pomodoroTimer").text(clockMinutes + ":" + clockSeconds);
+          if(secondsRemaningP > 0){
+            countdown();
+          } else if (secondsRemaningP == 0){
+            stage = "break";
+            adjustTimeB();
+            setTimeout(function() {
+              countdown();
+            }, 1000);
+          }
+        } else if (stage == "break"){
+          secondsRemainingB--;
+          clockMinutes = (Math.floor(secondsRemainingB/60));
+          clockSeconds = (secondsRemainingB % 60);
+          if(clockSeconds < 10){
+            clockSeconds = ("0" + clockSeconds).slice(-2);
+          }
+          $("#pomodoroTimer").text(clockMinutes + ":" + clockSeconds);
+          if(secondsRemainingB > 0){
+            countdown();
+          } else if (secondsRemainingB == 0){
+            stage = "pomodoro";
+            adjustTime();
+            setTimeout(function() {
+              countdown();
+            }, 1000);
+          }
+        }
+      }, 1000);
+    }
   }
 </script>
 </html>
