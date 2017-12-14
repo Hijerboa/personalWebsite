@@ -1,7 +1,19 @@
 #wrapper {
   display: grid;
   grid-template-columns: 200px 200px 200px;
-  grid-template-rows: 200px 200px 200px; }
+  grid-template-rows: 200px 200px 200px;
+  width: 650px;
+  height: 650px;
+  margin: auto;
+  padding: 15vh; }
+
+.tile {
+  color: white;
+  text-align: center; }
+
+.fa-js-square {
+  margin: auto;
+  padding: 38px; }
 
 #box1 {
   background-color: black;
