@@ -7,11 +7,44 @@
   margin: auto;
   padding: 15vh;
 }
+#messageWrapper{
+  margin: auto;
+  width: 800px;
+  height: 400px;
+  padding: 10vh;
+  border-color: black;
+  border-width: 25px;
+  border-radius: 8px;
+  border-style: solid;
+  display: grid;
+  grid-template-columns: 266px 266px 266;
+  grid-template-rows: 133px 133px 133px;
+}
+#pickYourClass{
+  font-size: 75px;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  text-align: center;
+}
+#jsClass{
+  grid-column-start: 1;
+  grid-column-end: 2;
+  text-align: center;
+}
+#htmlClass{
+  grid-column-start: 3;
+  grid-column-end: 4;
+  text-align: center;
+}
 .tile{
   color: white;
   text-align: center;
 }
 .fa-js-square{
+  margin: auto;
+  padding: 38px;
+}
+.fa-html5{
   margin: auto;
   padding: 38px;
 }
