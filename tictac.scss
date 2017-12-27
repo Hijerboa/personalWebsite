@@ -17,7 +17,7 @@
   border-radius: 8px;
   border-style: solid;
   display: grid;
-  grid-template-columns: 266px 266px 266;
+  grid-template-columns: 266px 266px 266px;
   grid-template-rows: 133px 133px 133px;
 }
 #pickYourClass{
@@ -37,7 +37,7 @@
   text-align: center;
 }
 .tile{
-  color: white;
+  background-color: black;
   text-align: center;
 }
 .fa-js-square{
@@ -48,7 +48,7 @@
   margin: auto;
   padding: 38px;
 }
-#box1 {
+#a1 {
   background-color: black;
   border-right-color: white;
   border-right-style: solid;
@@ -57,13 +57,13 @@
   border-bottom-style: solid;
   border-bottom-width: 10px;
 }
-#box2{
+#a2{
   background-color: black;
   border-bottom-color: white;
   border-bottom-style: solid;
   border-bottom-width: 10px;
 }
-#box3{
+#a3{
   background-color: black;
   border-bottom-color: white;
   border-bottom-style: solid;
@@ -72,7 +72,7 @@
   border-left-style: solid;
   border-left-width: 10px;
 }
-#box4{
+#b1{
   background-color: black;
   border-right-color: white;
   border-right-style: solid;
@@ -81,31 +81,31 @@
   border-bottom-style: solid;
   border-bottom-width: 10px;
 }
-#box5{
+#b2{
   background-color: black;
   border-bottom-color: white;
   border-bottom-style: solid;
   border-bottom-width: 10px;
 }
-#box6{
-    background-color: black;
-    border-bottom-color: white;
-    border-bottom-style: solid;
-    border-bottom-width: 10px;
-    border-left-color: white;
-    border-left-style: solid;
-    border-left-width: 10px;
+#b3{
+  background-color: black;
+  border-bottom-color: white;
+  border-bottom-style: solid;
+  border-bottom-width: 10px;
+  border-left-color: white;
+  border-left-style: solid;
+  border-left-width: 10px;
 }
-#box7{
+#c1{
   background-color: black;
   border-right-color: white;
   border-right-style: solid;
   border-right-width: 10px;
 }
-#box8{
+#c2{
     background-color: black;
 }
-#box9{
+#c3{
   background-color: black;
   border-left-color: white;
   border-left-style: solid;
