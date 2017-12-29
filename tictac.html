@@ -82,6 +82,16 @@
       console.log(winner);
     }
   }
+  function movesRemaning(){
+    for(i=0;i<3;i++){
+      for(j=0;j<3;j++){
+        if(grid[i][j] == "-"){
+          return true;
+        }
+      }
+    }
+    return false;
+  }
   $("#jsClass").click(function(){
     classType = "js";
     classPicked();
