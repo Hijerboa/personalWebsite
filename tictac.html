@@ -37,7 +37,6 @@
     $("#wrapper").hide();
     console.log(grid);
     evaluate(grid);
-    console.log(evaluate());
   });
   function classPicked(){
     $("#messageWrapper").hide();
@@ -145,11 +144,12 @@
             } else if (classType == "html"){
               board[i][j] = "j";
             }
-
+            best = Math.max(best, minmax(board, depth++, !isMax));
           }
         }
       }
     } else {
+      best = 1000;
       for(i=0; i<3; i++){
         for(j=0; j<3; j++){
           if(board[i][j] == "j"){
@@ -158,7 +158,7 @@
             } else if (classType == "html"){
               board[i][j] = "h";
             }
-            
+              best = Math.min(best, minmax(board, depth++, !isMax));
           }
         }
       }
