@@ -174,7 +174,7 @@
         for(j=0; j<3; j++){
           if(board[i][j] == "j"){
             if(classType == "js"){
-              board[i][j] = "j"
+              board[i][j] = "j";
             } else if (classType == "html"){
               board[i][j] = "h";
             }
@@ -194,9 +194,9 @@
       for(j=0; j<3; j++){
         if(board[i][j] == "-"){
           if(classType == "js"){
-            board[i][j] == "h";
+            board[i][j] = "h";
           } else if (classType == "html"){
-            board[i][j] == "j";
+            board[i][j] = "j";
           }
           moveVal = minMax(board, 0, false);
           board[i][j] = "-";
@@ -218,7 +218,7 @@
       ["h", "j", "j"],
       ["j", "j", "h"],
       ["-", "-", "-"]
-    ]
+    ];
     bestMove = findBestMove(gridder);
     console.log("Row: " + bestMove[0] + " Col: " + bestMove[1]);
   }
