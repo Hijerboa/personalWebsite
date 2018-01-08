@@ -30,136 +30,141 @@
   //declaring variables
   var classType, winner, best, moveVal, bestMoveRow, bestMoveCol;
   var bestMove = [];
-  var grid = [
-    ["-","-","-"],
-    ["-","-","-"],
-    ["-","-","-"]
-  ];
+  var grid = [["-", "-", "-"], ["-", "-", "-"], ["-", "-", "-"]];
   //on start, display the select icon screen
   $(document).ready(function() {
-    $("#wrapper").hide();
-    console.log(grid);
-    evaluate(grid);
+  $("#wrapper").hide();
+  driver();
   });
   //when class is picked, hide the icons
-  function classPicked(){
-    $("#messageWrapper").hide();
-    $("#wrapper").show();
-    $(".jsSymbol").hide();
-    $(".HTMLSymbol").hide();
-    driver();
+  function classPicked() {
+  $("#messageWrapper").hide();
+  $("#wrapper").show();
+  $(".jsSymbol").hide();
+  $(".HTMLSymbol").hide();
   }
   //check each direction for a winner
-  function evaluate(board){
-    checkHorizontals(board);
-    checkVerticals(board);
-    checkDiagonals(board);
+  function evaluate(board) {
+  checkHorizontals(board);
+  checkVerticals(board);
+  checkDiagonals(board);
   }
   //checks horizonatals
-  function checkHorizontals(board){
-    for(i=0; i<3; i++){
-      if((board[i][0] == board[i][1]) && (board[i][1] == board[i][2]) && (board[i][0] != "-")){
-        if(board[i][0] == "j"){
-          if(classType == "html"){
-            return -10;
-          } else {
-            return 10;
-          }
-        } else if (board[i][0] == "h"){
-          if(classType == "html"){
-            return 10;
-          } else {
-            return -10;
-          }
+  function checkHorizontals(board) {
+  for (i = 0; i < 3; i++) {
+    if (
+      board[i][0] == board[i][1] &&
+      board[i][1] == board[i][2] &&
+      board[i][0] != "-"
+    ) {
+      if (board[i][0] == "j") {
+        if (classType == "html") {
+          return -10;
+        } else {
+          return 10;
+        }
+      } else if (board[i][0] == "h") {
+        if (classType == "html") {
+          return 10;
+        } else {
+          return -10;
         }
       }
     }
+  }
   }
   //checks verticals
-  function checkVerticals(board){
-    for(i=0; i<3; i++){
-      if((board[0][i] == board[1][i]) && (board[1][i] == board[2][i]) && (board[0][i] != "-")){
-        if(board[0][i] == "j"){
-          if(classType == "html"){
-            return -10;
-          } else {
-            return 10;
-          }
-        } else if(board[0][i] == "h"){
-          if(classType == "html"){
-            return 10;
-          } else {
-            return -10;
-          }
+  function checkVerticals(board) {
+  for (i = 0; i < 3; i++) {
+    if (
+      board[0][i] == board[1][i] &&
+      board[1][i] == board[2][i] &&
+      board[0][i] != "-"
+    ) {
+      if (board[0][i] == "j") {
+        if (classType == "html") {
+          return -10;
+        } else {
+          return 10;
+        }
+      } else if (board[0][i] == "h") {
+        if (classType == "html") {
+          return 10;
+        } else {
+          return -10;
         }
       }
     }
+  }
   }
   //checks Diagonals
-  function checkDiagonals(board){
-    if(((board[0][0] == board[1][1]) && (board[1][1] == board[2][2])) || ((board[0][2] == board[1][1]) && (board[1][1] == board[2][0]))){
-      if(board[1][1] == "h"){
-        if(classType == "html"){
-          return 10;
-        } else {
-          return -10;
-        }
-      }else if (board[1][1] == "j"){
-        if(classType == "html"){
-          return -10;
-        } else {
-          return 10;
-        }
+  function checkDiagonals(board) {
+  if (
+    (board[0][0] == board[1][1] && board[1][1] == board[2][2]) ||
+    (board[0][2] == board[1][1] && board[1][1] == board[2][0])
+  ) {
+    if (board[1][1] == "h") {
+      if (classType == "html") {
+        return 10;
+      } else {
+        return -10;
       }
-      console.log(winner);
+    } else if (board[1][1] == "j") {
+      if (classType == "html") {
+        return -10;
+      } else {
+        return 10;
+      }
     }
+    console.log(winner);
+  }
   }
   //checks to see if the current board is full
-  function movesRemaning(board){
-    for(i=0;i<3;i++){
-      for(j=0;j<3;j++){
-        if(board[i][j] == "-"){
-          return true;
-        }
+  function movesRemaning(board) {
+  for (i = 0; i < 3; i++) {
+    for (j = 0; j < 3; j++) {
+      if (board[i][j] == "-") {
+        return true;
       }
     }
-    return false;
+  }
+  return false;
   }
   //sets the player classtype depending on what the user clicked
-  $("#jsClass").click(function(){
+  $("#jsClass").click(function() {
     classType = "js";
     classPicked();
   });
-  $("#htmlClass").click(function(){
+  $("#htmlClass").click(function() {
     classType = "html";
     classPicked();
   });
   //checks the minmax of a given board
-  function minMax(board, depth, isMax){
-    score = evaluate(board);
-    //if the player wins, add depth, assign score
-    if(score == -10){
-      return (-10 + depth);
-    }
-    //if the computer wins, subtract depth, add score. Higher scores are better
-    if(score == 10){
-      return (10 - depth);
-    }
-    //checks to see if there are moves remaning, if there is a tie, return zero
-    if(movesRemaning(board) === false){
-      return 0;
-    }
-    //if is computer, run this, and play on the squares
-    if(isMax){
+  function minMax(board, depth, isMax) {
+  score = evaluate(board);
+  //if the player wins, add depth, assign score
+  if (score == -10) {
+    return -10 + depth;
+  }
+  //if the computer wins, subtract depth, add score. Higher scores are better
+  if (score == 10) {
+    return 10 - depth;
+  }
+  //checks to see if there are moves remaning, if there is a tie, return zero
+  if (movesRemaning(board) === false) {
+    return 0;
+  }
+  //if is computer, run this, and play on the squares
+  if (isMax) {
       best = -1000;
-      for(i=0; i<3; i++){
+      for (i = 0; i < 3; i++) {
         //console.log(i);
-        for(j=0; j<3; j++){
+        for (j = 0; j < 3; j++) {
           //console.log(j);
-          if(board[i][j]=="-"){
-            if(classType == "js"){
+          if (board[i][j] == "-") {
+            if (classType == "js") {
               board[i][j] = "h";
-            } else if (classType == "html"){
+            } else if (classType == "html") {
               board[i][j] = "j";
             }
             best = Math.max(best, minMax(board, depth++, !isMax));
@@ -167,40 +172,40 @@
           }
         }
       }
-      //if player, run this, and play on the squares
-    } else {
+    //if player, run this, and play on the squares
+  } else {
       best = 1000;
-      for(i=0; i<3; i++){
-        for(j=0; j<3; j++){
-          if(board[i][j] == "j"){
-            if(classType == "js"){
+      for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
+          if (board[i][j] == "j") {
+            if (classType == "js") {
               board[i][j] = "j";
-            } else if (classType == "html"){
+            } else if (classType == "html") {
               board[i][j] = "h";
             }
-              best = Math.min(best, minMax(board, depth++, !isMax));
-              board[i][j] = "-";
+            best = Math.min(best, minMax(board, depth++, !isMax));
+            board[i][j] = "-";
           }
         }
       }
     }
   }
   //checks all squares to see move value
-   function findBestMove(board){
+  function findBestMove(board) {
     bestVal = -1000;
     bestMoveRow = -1;
     bestMoveCol = -1;
-    for(i=0; i<3; i++){
-      for(j=0; j<3; j++){
-        if(board[i][j] == "-"){
-          if(classType == "js"){
+    for (i = 0; i < 3; i++) {
+      for (j = 0; j < 3; j++) {
+        if (board[i][j] == "-") {
+          if (classType == "js") {
             board[i][j] = "h";
-          } else if (classType == "html"){
+          } else if (classType == "html") {
             board[i][j] = "j";
           }
           moveVal = minMax(board, 0, false);
           board[i][j] = "-";
-          if(moveVal > bestVal){
+          if (moveVal > bestVal) {
             bestMoveRow = i;
             bestMoveCol = j;
             bestVal = moveVal;
@@ -213,14 +218,10 @@
     return bestMove;
   }
   //code to run tests on the algorithm. Does not actually pertain to the game itself
-  function driver(){
-    var gridder = [
-      ["h", "j", "j"],
-      ["j", "j", "h"],
-      ["-", "-", "-"]
-    ];
-    bestMove = findBestMove(gridder);
-    console.log("Row: " + bestMove[0] + " Col: " + bestMove[1]);
+  function driver() {
+  var gridder = [["h", "j", "j"], ["j", "j", "h"], ["-", "-", "-"]];
+  bestMove = findBestMove(gridder);
+  console.log("Row: " + bestMove[0] + " Col: " + bestMove[1]);
   }
 </script>
 </html>
