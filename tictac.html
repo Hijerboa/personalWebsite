@@ -54,20 +54,19 @@
         board[i][1] == board[i][2] &&
         board[i][0] != "-"
       ) {
-        if (board[i][0] == "j") {
-          if (classType == "h") {
+        if(board[i][0] == "h"){
+          if(classType == "h"){
             return -10;
           } else {
             return 10;
           }
-        } else if (board[i][0] == "h") {
-          if (classType == "h") {
-            return 10;
-          } else {
+        } else if (board[i][0] == "j"){
+          if(classtype == "j"){
             return -10;
+          } else {
+            return 10;
           }
         }
-      }
     }
     //check verticals
     for (var i = 0; i < 3; i++) {
@@ -76,19 +75,7 @@
         board[1][i] == board[2][i] &&
         board[0][i] != "-"
       ) {
-        if (board[0][i] == "j") {
-          if (classType == "h") {
-            return -10;
-          } else {
-            return 10;
-          }
-        } else if (board[0][i] == "h") {
-          if (classType == "h") {
-            return 10;
-          } else {
-            return -10;
-          }
-        }
+
       }
     }
     //check diagonals
@@ -96,19 +83,7 @@
       (board[0][0] == board[1][1] && board[1][1] == board[2][2] && board[1][1]!="-") ||
       (board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[1][1]!="-")
     ) {
-      if (board[1][1] == "h") {
-        if (classType == "h") {
-          return 10;
-        } else {
-          return -10;
-        }
-      } else if (board[1][1] == "j") {
-        if (classType == "h") {
-          return -10;
-        } else {
-          return 10;
-        }
-      }
+
     }
   }
   //checks to see if the current board is full
@@ -131,6 +106,60 @@
     classType = "h";
     classPicked();
   });
+
+  //checks the minmax of a given board
+  function minMax(board, depth, isMax) {
+  score = evaluate(board);
+  //console.log(evaluate(board));
+  //if the player wins, add depth, assign score
+  if (score == -10) {
+    score = (-10 + depth);
+  } else if (score == 10){
+    //if the computer wins, subtract depth, add score. Higher scores are better
+    score = (10 - depth);
+  } else if (movesRemaning(board) == false){
+    //checks to see if there are moves remaning, if there is a tie, return zero
+    score = 0;
+  } else {
+    //if is computer, run this, and play on the squares
+    if (isMax) {
+      if(depth == 0){
+        best = -1000;
+      }
+      for (var i = 0; i < 3; i++) {
+        for (var j = 0; j < 3; j++) {
+          if (board[i][j] == "-") {
+            if (classType == "j") {
+              board[i][j] = "h";
+            } else if (classType == "h") {
+              board[i][j] = "j";
+            }
+            console.log(JSON.stringify(board));
+            //best = Math.max(best, minMax(board, depth++, !isMax));
+            //console.log(best);
+            minMax(board, depth++, !isMax);
+            board[i][j] = "-";
+          }
+        }
+      }
+      //if player, run this, and play on the squares
+      } else {
+        if(depth == 1){
+          best = 1000;
+        }
+        for (var i = 0; i < 3; i++) {
+          for (var j = 0; j < 3; j++) {
+            if (board[i][j] == "-") {
+              board[i][j] = classType;
+              //best = Math.min(best, minMax(board, depth++, !isMax));
+              minMax(board, depth++, !isMax);
+              board[i][j] = "-";
+            }
+          }
+        }
+      }
+    }
+  }
   //checks all squares to see move value
   function findBestMove(board) {
     bestVal = -1000;
