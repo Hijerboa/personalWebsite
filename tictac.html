@@ -44,11 +44,67 @@
   $(".jsSymbol").hide();
   $(".HTMLSymbol").hide();
   }
+  function playMoveAI(board){
+    if(classType == "j"){
+      board[bestMove[0]][besteMove[1]] = "h"
+      if(bestMove[0] == 0){
+        if(bestMove[1] == 0){
+          $("#html1").show;
+        } else if(bestMove[1] == 1){
+          $("#html4").show;
+        } else if(bestMove[1] == 2){
+          $("#html7").show;
+        }
+      } else if(bestMove[0] == 1){
+        if(bestMove[1] == 0){
+          $("#html2").show;
+        } else if(bestMove[1] == 1){
+          $("#html5").show;
+        } else if(bestMove[1] == 2){
+          $("#html8").show;
+        }
+      } else if(bestMove[0] == 2){
+        if(bestMove[1] == 0){
+          $("#html3").show;
+        }else if(bestMove[1] == 1){
+          $("#html6").show;
+        }else if(bestMove[1] == 2){
+          $("#html9").show;
+        }
+      }
+    } else if(classType == "h"){
+      board[bestMove[0]][bestMove[1]] = "j";
+      if(bestMove[0] == 0){
+        if(bestMove[1] == 0){
+          $("#js1").show;
+        } else if(bestMove[1] == 1){
+          $("#js4").show;
+        } else if(bestMove[1] == 2){
+          $("#js7").show;
+        }
+      } else if(bestMove[0] == 1){
+        if(bestMove[1] == 0){
+          $("#js2").show;
+        } else if(bestMove[1] == 1){
+          $("#js5").show;
+        } else if(bestMove[1] == 2){
+          $("#js8").show;
+        }
+      } else if(bestMove[0] == 2){
+        if(bestMove[1] == 0){
+          $("#js3").show;
+        } else if(bestMove[1] == 1){
+          $("#js6").show;
+        } else if(bestMove[1] == 2){
+          $("#js9").show;
+        }
+      }
+    }
+  }
   //check each direction for a winner
   function evaluate(board) {
     //check horizonatals
     for (var i = 0; i < 3; i++) {
-      console.log(JSON.stringify(board) + " " + i);
       if (
         board[i][0] == board[i][1] &&
         board[i][1] == board[i][2] &&
@@ -131,6 +187,16 @@
     classType = "h";
     classPicked();
   });
+  function randomMove(board){
+    var x = Math.floor(Math.random()*3);
+    var y = Math.floor(Math.random()*3);
+    if(board[x][y] == "-"){
+      bestMoveRow = y;
+      bestMoveCol = x;
+    } else {
+      randomMove(board);
+    }
+  }
   //checks all squares to see move value
   function findBestMove(board) {
     bestMoveRow = -1;
@@ -186,16 +252,18 @@
           }
         }
       }
+      if(bestMoveRow == -1){
+        randomMove(board);
+      }
     }
-    console.log(board);
     bestMove[0] = bestMoveRow;
     bestMove[1] = bestMoveCol;
     return bestMove;
   }
   //code to run tests on the algorithm. Does not actually pertain to the game itself
   function driver() {
-    gridder = [["j", "h", "-"],
-               ["j", "h", "-"],
+    gridder = [["-", "-", "-"],
+               ["-", "-", "-"],
                ["-", "-", "-"]];
     classType = "j";
     bestMove = findBestMove(gridder);
