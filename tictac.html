@@ -18,8 +18,8 @@
   </div>
   <div id="messageWrapper">
     <h1 align="center" id="pickYourClass">Pick Your Class</h1>
-    <div id="jsClass"><span class="jsSymbol"><i class="fab fa-js-square fa-10x"></i></span></div>
-    <div id="htmlClass"><span class="HTMLSymbol"><i class="fab fa-html5 fa-10x"></i></span></div>
+    <div id="jsClass"><span class="jsSymbolSpecial"><i class="fab fa-js-square fa-10x" id="jsSelector"></i></span></div>
+    <div id="htmlClass"><span class="HTMLSymbolSpecial"><i class="fab fa-html5 fa-10x" id="htmlSelector"></i></span></div>
   </div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -28,75 +28,95 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 <script language="JavaScript">
   //declaring variables
-  var classType, winner, best, moveVal, bestMoveRow, bestMoveCol, score;
+  var classType, winner, best, moveVal, bestMoveRow, bestMoveCol, turn;
   var bestMove = [];
   var grid = [["-", "-", "-"], ["-", "-", "-"], ["-", "-", "-"]];
   var gridder = [];
   //on start, display the select icon screen
   $(document).ready(function() {
-  $("#wrapper").hide();
-  driver();
+    $("#wrapper").hide();
+  });
+  //sets the player classtype depending on what the user clicked
+  $("#jsClass").click(function() {
+    classType = "j";
+    classPicked();
+  });
+  $("#htmlClass").click(function() {
+    classType = "h";
+    classPicked();
   });
   //when class is picked, hide the icons
   function classPicked() {
-  $("#messageWrapper").hide();
-  $("#wrapper").show();
-  $(".jsSymbol").hide();
-  $(".HTMLSymbol").hide();
+    $("#messageWrapper").hide();
+    $("#wrapper").show();
+    $(".jsSymbol").hide();
+    $(".HTMLSymbol").hide();
+    /*if(Math.floor(Math.random()*2) == 0){
+      turn = true;
+    } else {
+      turn = false;
+    } */
+    turn = true;
+    driver();
   }
+  $("#a1").click(function(){
+    $("#html1").show;
+    console.log("YOLO");
+  });
   function playMoveAI(board){
     if(classType == "j"){
-      board[bestMove[0]][besteMove[1]] = "h"
+      board[bestMove[0]][bestMove[1]] = "h";
+      console.log("hi");
       if(bestMove[0] == 0){
         if(bestMove[1] == 0){
-          $("#html1").show;
+          $("#html1").show();
         } else if(bestMove[1] == 1){
-          $("#html4").show;
+          $("#html4").show();
         } else if(bestMove[1] == 2){
-          $("#html7").show;
+          $("#html7").show();
         }
       } else if(bestMove[0] == 1){
         if(bestMove[1] == 0){
-          $("#html2").show;
+          $("#html2").show();
         } else if(bestMove[1] == 1){
-          $("#html5").show;
+          $("#html5").show();
         } else if(bestMove[1] == 2){
-          $("#html8").show;
+          $("#html8").show();
         }
       } else if(bestMove[0] == 2){
         if(bestMove[1] == 0){
-          $("#html3").show;
+          $("#html3").show();
         }else if(bestMove[1] == 1){
-          $("#html6").show;
+          $("#html6").show();
         }else if(bestMove[1] == 2){
-          $("#html9").show;
+          $("#html9").show();
         }
       }
     } else if(classType == "h"){
       board[bestMove[0]][bestMove[1]] = "j";
       if(bestMove[0] == 0){
         if(bestMove[1] == 0){
-          $("#js1").show;
+          $("#js1").show();
         } else if(bestMove[1] == 1){
-          $("#js4").show;
+          $("#js4").show();
         } else if(bestMove[1] == 2){
-          $("#js7").show;
+          $("#js7").show();
         }
       } else if(bestMove[0] == 1){
         if(bestMove[1] == 0){
-          $("#js2").show;
+          $("#js2").show();
         } else if(bestMove[1] == 1){
-          $("#js5").show;
+          $("#js5").show();
         } else if(bestMove[1] == 2){
-          $("#js8").show;
+          $("#js8").show();
         }
       } else if(bestMove[0] == 2){
         if(bestMove[1] == 0){
-          $("#js3").show;
+          $("#js3").show();
         } else if(bestMove[1] == 1){
-          $("#js6").show;
+          $("#js6").show();
         } else if(bestMove[1] == 2){
-          $("#js9").show;
+          $("#js9").show();
         }
       }
     }
@@ -178,15 +198,6 @@
   }
   return false;
   }
-  //sets the player classtype depending on what the user clicked
-  $("#jsClass").click(function() {
-    classType = "j";
-    classPicked();
-  });
-  $("#htmlClass").click(function() {
-    classType = "h";
-    classPicked();
-  });
   function randomMove(board){
     var x = Math.floor(Math.random()*3);
     var y = Math.floor(Math.random()*3);
@@ -262,12 +273,12 @@
   }
   //code to run tests on the algorithm. Does not actually pertain to the game itself
   function driver() {
-    gridder = [["-", "-", "-"],
-               ["-", "-", "-"],
-               ["-", "-", "-"]];
-    classType = "j";
-    bestMove = findBestMove(gridder);
-    console.log("Row: " + bestMove[0] + " Col: " + bestMove[1]);
+    console.log(turn);
+    if(turn){
+      findBestMove(grid);
+      console.log(bestMove);
+      playMoveAI(grid);
+    }
   }
 </script>
 </html>
