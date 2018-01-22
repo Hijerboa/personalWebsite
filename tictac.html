@@ -57,12 +57,8 @@
       turn = false;
     } */
     turn = true;
-    driver();
+    driver(grid);
   }
-  $("#a1").click(function(){
-    $("#html1").show;
-    console.log("YOLO");
-  });
   function playMoveAI(board){
     if(classType == "j"){
       board[bestMove[0]][bestMove[1]] = "h";
@@ -71,23 +67,23 @@
         if(bestMove[1] == 0){
           $("#html1").show();
         } else if(bestMove[1] == 1){
-          $("#html4").show();
+          $("#html2").show();
         } else if(bestMove[1] == 2){
-          $("#html7").show();
+          $("#html3").show();
         }
       } else if(bestMove[0] == 1){
         if(bestMove[1] == 0){
-          $("#html2").show();
+          $("#html4").show();
         } else if(bestMove[1] == 1){
           $("#html5").show();
         } else if(bestMove[1] == 2){
-          $("#html8").show();
+          $("#html6").show();
         }
       } else if(bestMove[0] == 2){
         if(bestMove[1] == 0){
-          $("#html3").show();
+          $("#html7").show();
         }else if(bestMove[1] == 1){
-          $("#html6").show();
+          $("#html8").show();
         }else if(bestMove[1] == 2){
           $("#html9").show();
         }
@@ -98,23 +94,23 @@
         if(bestMove[1] == 0){
           $("#js1").show();
         } else if(bestMove[1] == 1){
-          $("#js4").show();
+          $("#js2").show();
         } else if(bestMove[1] == 2){
-          $("#js7").show();
+          $("#js3").show();
         }
       } else if(bestMove[0] == 1){
         if(bestMove[1] == 0){
-          $("#js2").show();
+          $("#js4").show();
         } else if(bestMove[1] == 1){
           $("#js5").show();
         } else if(bestMove[1] == 2){
-          $("#js8").show();
+          $("#js6").show();
         }
       } else if(bestMove[0] == 2){
         if(bestMove[1] == 0){
-          $("#js3").show();
+          $("#js7").show();
         } else if(bestMove[1] == 1){
-          $("#js6").show();
+          $("#js8").show();
         } else if(bestMove[1] == 2){
           $("#js9").show();
         }
@@ -272,12 +268,114 @@
     return bestMove;
   }
   //code to run tests on the algorithm. Does not actually pertain to the game itself
-  function driver() {
+  function driver(board) {
     console.log(turn);
     if(turn){
       findBestMove(grid);
       console.log(bestMove);
       playMoveAI(grid);
+      turn = false;
+      driver(board);
+    } else {
+      $("#a1").click(function(){
+        if(board[0][0] == "-"){
+          if(classType == "j"){
+            board[0][0] = "j";
+            $("#js1").show();
+          }else if(classType == "h"){
+            board[0][0] = "h";
+            $("#html1").show();
+          }
+        }
+      });
+      $("#a2").click(function(){
+        if(board[0][1] == "-"){
+          if(classType == "j"){
+            board[0][1] = "j";
+            $("#js2").show();
+          }else if(classType == "h"){
+            board[0][1] = "h";
+            $("#html2").show();
+          }
+        }
+      });
+      $("#a3").click(function(){
+        if(board[0][2] == "-"){
+          if(classType=="j"){
+            board[0][2] == "j";
+            $("#js3").show();
+          }else if(classType == "h"){
+            board[0][2] = "h";
+            $("#html3").show();
+          }
+        }
+      });
+      $("#b1").click(function() {
+        if(board[1][0] == "-"){
+          if(classType == "j"){
+            board[1][0] == "j";
+            $("#js4").show();
+          }else if(classType == "h"){
+            board[1][0] == "h";
+            $("#html4").show();
+          }
+        }
+      });
+      $("#b2").click(function(){
+        if(board[1][1] == "-"){
+          if(classType== "j"){
+            board[1][1] == "j";
+            $("#js5").show();
+          }else if(classType == "h"){
+            board[1][1] == "h";
+            $("#html5").show();
+          }
+        }
+      });
+      $("#b3").click(function(){
+        if(board[1][2] == "-"){
+          if(classType == "j"){
+            board[1][2] == "j";
+            $("#js6").show();
+          }else if(classType == "h"){
+            board[1][2] == "h";
+            $("#html6").show();
+          }
+        }
+      });
+      $("#c1").click(function(){
+        if(board[2][0] == "-"){
+          if(classType == "j"){
+            board[2][0] == "j";
+            $("#js7").show();
+          }else if(classType == "h"){
+            board[2][0] == "h";
+            $("#html7").show();
+          }
+        }
+      });
+      $("#c2").click(function(){
+        if(board[2][1] == "-"){
+          if(classType == "j"){
+            board[2][1] == "j";
+            $("#js8").show();
+          }else if(classType == "h"){
+            board[2][1] = "h";
+            $("#html8").show();
+          }
+        }
+      });
+      $("#c3").click(function(){
+        if(board[2][2] == "-"){
+          if(classType == "j"){
+            board[2][2] == "j";
+            $("#js9").show();
+          }else if(classType == "h"){
+            board[2][2] == "h";
+            $("#html9").show();
+          }
+        }
+      });
     }
   }
 </script>
