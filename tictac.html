@@ -116,6 +116,7 @@
         }
       }
     }
+    console.log(JSON.stringify(board));
   }
   //check each direction for a winner
   function evaluate(board) {
@@ -192,7 +193,7 @@
       }
     }
   }
-  return false;
+    return false;
   }
   function randomMove(board){
     var x = Math.floor(Math.random()*3);
@@ -286,6 +287,8 @@
             board[0][0] = "h";
             $("#html1").show();
           }
+          turn = true;
+          driver(board);
         }
       });
       $("#a2").click(function(){
@@ -297,83 +300,99 @@
             board[0][1] = "h";
             $("#html2").show();
           }
+          turn = true;
+          driver(board);
         }
       });
       $("#a3").click(function(){
         if(board[0][2] == "-"){
           if(classType=="j"){
-            board[0][2] == "j";
+            board[0][2] = "j";
             $("#js3").show();
           }else if(classType == "h"){
             board[0][2] = "h";
             $("#html3").show();
           }
+          turn = true;
+          driver(board);
         }
       });
       $("#b1").click(function() {
         if(board[1][0] == "-"){
           if(classType == "j"){
-            board[1][0] == "j";
+            board[1][0] = "j";
             $("#js4").show();
           }else if(classType == "h"){
-            board[1][0] == "h";
+            board[1][0] = "h";
             $("#html4").show();
           }
+          turn = true;
+          driver(board);
         }
       });
       $("#b2").click(function(){
         if(board[1][1] == "-"){
           if(classType== "j"){
-            board[1][1] == "j";
+            board[1][1] = "j";
             $("#js5").show();
           }else if(classType == "h"){
-            board[1][1] == "h";
+            board[1][1] = "h";
             $("#html5").show();
           }
+          turn = true;
+          driver(board);
         }
       });
       $("#b3").click(function(){
         if(board[1][2] == "-"){
           if(classType == "j"){
-            board[1][2] == "j";
+            board[1][2] = "j";
             $("#js6").show();
           }else if(classType == "h"){
-            board[1][2] == "h";
+            board[1][2] = "h";
             $("#html6").show();
           }
+          turn = true;
+          driver(board);
         }
       });
       $("#c1").click(function(){
         if(board[2][0] == "-"){
           if(classType == "j"){
-            board[2][0] == "j";
+            board[2][0] = "j";
             $("#js7").show();
           }else if(classType == "h"){
-            board[2][0] == "h";
+            board[2][0] = "h";
             $("#html7").show();
           }
+          turn = true;
+          driver(board);
         }
       });
       $("#c2").click(function(){
         if(board[2][1] == "-"){
           if(classType == "j"){
-            board[2][1] == "j";
+            board[2][1] = "j";
             $("#js8").show();
           }else if(classType == "h"){
             board[2][1] = "h";
             $("#html8").show();
           }
+          turn = true;
+          driver(board);
         }
       });
       $("#c3").click(function(){
         if(board[2][2] == "-"){
           if(classType == "j"){
-            board[2][2] == "j";
+            board[2][2] = "j";
             $("#js9").show();
           }else if(classType == "h"){
-            board[2][2] == "h";
+            board[2][2] = "h";
             $("#html9").show();
           }
+          turn = true;
+          driver(board);
         }
       });
     }
