@@ -28,7 +28,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 <script language="JavaScript">
   //declaring variables
-  var classType, winner, best, moveVal, bestMoveRow, bestMoveCol, turn;
+  var classType, winner, best, moveVal, bestMoveX, bestMoveY, turn;
   var bestMove = [];
   var grid = [["-", "-", "-"], ["-", "-", "-"], ["-", "-", "-"]];
   var gridder = [];
@@ -58,6 +58,228 @@
     } */
     turn = true;
     driver(grid);
+  }
+  function evaluateMove(board){
+    //evaluate horizontals
+    for(i=0;i<3;i++){
+      if((board[i][0] == board[i][1]) && (board[i][1] == board[i][2]) && (board[i][1] !== "-")){
+        return 10;
+      }
+    }
+    //evaluate verticals
+    for(j=0;j<3;j++){
+      if((board[0][j] == board[1][j]) && (board[1][j] == board[2][j]) && (board[1][j] !== "-")){
+        return 10;
+      }
+    }
+    //evaluate diagonals
+    if(((board[0][0] == board[1][1]) && (board[1][1] == board[2][2]) && (board[1][1] !== "-")) || ((board[0][2] == board[1][1]) && (board[1][1] == board[2][0]) && (board[1][1] !== "-" ))){
+      return 10;
+    }
+  }
+  function driver(board){
+    if(turn){
+      if(classType == "j"){
+        for(var y=0; y<3; y++){
+          for(var x=0; x<3; x++){
+            board[y][x] = "h";
+            if(evaluateMove(board) == 10){
+              bestMoveY = y;
+              bestMoveX = x;
+              playBestMove(board);
+              turn = false;
+              driver(board);
+            }
+            board[y][x] = "-";
+          }
+        }
+        for(var y=0; y<3; y++){
+          for(var x=0; x<3; x++){
+            board[y][x] = "j";
+            if(evaluateMove(board) == 10){
+              bestMoveY = y;
+              bestMoveX = x;
+              playBestMove(board);
+              turn = false;
+              driver(board);
+            }
+            board[y][x] = "-";
+          }
+        }
+      }else if(classType == "h"){
+        for(var y=0; y<3; y++){
+          for(var x=0; x<3; x++){
+            board[y][x] = "j";
+            console.log(JSON.stringify(board));
+            if(evaluateMove(board) == 10){
+              bestMoveY = y;
+              bestMoveX = x;
+              playBestMove(board);
+              turn = false;
+              driver(board);
+            }
+            board[y][x] = "-";
+          }
+        }
+        for(var y=0; y<3; y++){
+          for(var x=0; x<3; x++){
+            board[y][x] = "h";
+            if(evaluateMove(board) == 10){
+              bestMoveY = y;
+              bestMoveX = x;
+              playBestMove(board);
+              turn = false;
+              driver(board);
+            }
+            board[y][x] = "-";
+          }
+        }
+      }
+      pickRandom(board);
+      turn = false;
+      driver(board);
+    }else{
+      $("#a1").click(function(){
+        if(board[0][0] == "-"){
+          if(classType == "j"){
+            board[0][0] = "j";
+            $("#js1").show();
+          }else if(classType == "h"){
+            board[0][0] = "h";
+            $("#html1").show();
+          }
+          turn = true;
+          driver(board);
+        }
+      });
+      $("#a2").click(function(){
+        if(board[0][1] == "-"){
+          if(classType == "j"){
+            board[0][1] = "j";
+            $("#js2").show();
+          }else if(classType == "h"){
+            board[0][1] = "h";
+            $("#html2").show();
+          }
+          turn = true;
+          driver(board);
+        }
+      });
+      $("#a3").click(function(){
+        if(board[0][2] == "-"){
+          if(classType == "j"){
+            board[0][2] = "j";
+            $("#js3").show();
+          }else if(classType == "h"){
+            board[0][2] = "h";
+            $("#html3").show();
+          }
+          turn = true;
+          driver(board);
+        }
+      });
+      $("#b1").click(function(){
+        if(board[1][0] == "-"){
+          if(classType == "j"){
+            board[1][0] = "j";
+            $("#js4").show();
+          }else if(classType == "h"){
+            board[1][0] = "h";
+            $("#html4").show();
+          }
+          turn = true;
+          driver(board);
+        }
+      });
+      
+    }
+  }
+  function pickRandom(board){
+    console.log("called");
+    var x = Math.floor(Math.random()*3);
+    var y = Math.floor(Math.random()*3);
+    if(board[y][x] == "-"){
+      console.log(JSON.stringify(board));
+      console.log("Best move is: " + x + ", " + y);
+      bestMoveX = x;
+      bestMoveY = y;
+      playBestMove(board);
+    }else{
+      pickRandom(board);
+    }
+  }
+  function playBestMove(board){
+    if(classType == "j"){
+      if(bestMoveY == 0){
+        if(bestMoveX == 0){
+          board[0][0] = "h";
+          $("#html1").show();
+        }else if(bestMoveX == 1){
+          board[0][1] = "h";
+          $("#html2").show();
+        }else if(bestMoveX ==2){
+          board[0][2] = "h";
+          $("#html3").show();
+        }
+      }else if(bestMoveY == 1){
+        if(bestMoveX == 0){
+          board[1][0] = "h";
+          $("#html4").show();
+        }else if(bestMoveX == 1){
+          board[1][1] = "h";
+          $("#html5").show();
+        }else if(bestMoveX == 2){
+          board[1][2] = "h";
+          $("#html6").show();
+        }
+      }else if(bestMoveY == 2){
+        if(bestMoveX == 0){
+          board[2][0] = "h";
+          $("#html7").show();
+        }else if(bestMoveX == 1){
+          board[2][1] = "h";
+          $("#html8").show();
+        }else if(bestMoveX == 2){
+          board[2][2] = "h";
+          $("#html9").show();
+        }
+      }
+    }else if(classType = "h"){
+      if(bestMoveY == 0){
+        if(bestMoveX == 0){
+          board[0][0] = "j";
+          $("#js1").show();
+        }else if(bestMoveX == 1){
+          board[0][1] = "j";
+          $("#js2").show();
+        }else if(bestMoveX == 2){
+          board[0][2] = "j";
+          $("#js3").show();
+        }
+      }else if(bestMoveY == 1){
+        if(bestMoveX == 0){
+          board[1][0] = "j";
+          $("#js4").show();
+        }else if(bestMoveX == 1){
+          board[1][1] = "j";
+          $("#js5").show();
+        }else if(bestMoveX == 2){
+          board[1][2] = "j";
+          $("#js6").show();
+        }
+      }else if(bestMoveY == 2){
+        if(bestMoveX == 0){
+          board[2][0] = "j";
+          $("#js7").show();
+        }else if(bestMoveX == 1){
+          board[2][1] = "j";
+          $("#js8").show();
+        }else if(bestMoveX == 2){
+          board[2][2] = "j";
+          $("#js9").show();
+        }
+      }
+    }
   }
 </script>
 </html>
