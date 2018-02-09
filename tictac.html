@@ -51,110 +51,41 @@
     $("#wrapper").show();
     $(".jsSymbol").hide();
     $(".HTMLSymbol").hide();
-    /*if(Math.floor(Math.random()*2) == 0){
+    if(Math.floor(Math.random()*2) == 0){
       turn = true;
     } else {
       turn = false;
-    } */
-    turn = true;
+    }
+    //turn = true;
     driver(grid);
   }
   function evaluateMove(board){
     //evaluate horizontals
     for(i=0;i<3;i++){
       if((board[i][0] == board[i][1]) && (board[i][1] == board[i][2]) && (board[i][1] !== "-")){
+        console.log("horizontals");
         return 10;
       }
     }
     //evaluate verticals
     for(j=0;j<3;j++){
       if((board[0][j] == board[1][j]) && (board[1][j] == board[2][j]) && (board[1][j] !== "-")){
+        console.log('verticals');
         return 10;
       }
     }
     //evaluate diagonals
     if(((board[0][0] == board[1][1]) && (board[1][1] == board[2][2]) && (board[1][1] !== "-")) || ((board[0][2] == board[1][1]) && (board[1][1] == board[2][0]) && (board[1][1] !== "-" ))){
+      console.log("diagonals");
       return 10;
     }
   }
   function driver(board){
+    console.log(JSON.stringify(board));
     needRandom = true;
     if(turn){
-      if(classType == "j"){
-        for(var y=0; y<3; y++){
-          for(var x=0; x<3; x++){
-            if(board[y][x] == "-"){
-              board[y][x] = "h";
-              if(evaluateMove(board) == 10){
-                console.log('hello');
-                bestMoveY = y;
-                bestMoveX = x;
-                playBestMove(board);
-                turn = false;
-                needRandom = false;
-                driver(board);
-              }
-              board[y][x] = "-";
-            }
-          }
-        }
-        for(var y=0; y<3; y++){
-          for(var x=0; x<3; x++){
-            if(board[y][x] == "-"){
-              board[y][x] = "j";
-              if(evaluateMove(board) == 10){
-                console.log('hello 2');
-                bestMoveY = y;
-                bestMoveX = x;
-                playBestMove(board);
-                turn = false;
-                needRandom = false;
-                driver(board);
-              }
-              board[y][x] = "-";
-            }
-          }
-        }
-      }else if(classType == "h"){
-        for(var y=0; y<3; y++){
-          for(var x=0; x<3; x++){
-            if(board[y][x] == "-"){
-              board[y][x] = "j";
-              if(evaluateMove(board) == 10){
-                console.log('hello');
-                bestMoveY = y;
-                bestMoveX = x;
-                playBestMove(board);
-                turn = false;
-                needRandom = false;
-                driver(board);
-              }
-              board[y][x] = "-";
-            }
-          }
-        }
-        for(var y=0; y<3; y++){
-          for(var x=0; x<3; x++){
-            if(board[y][x] == "-"){
-              board[y][x] = "h";
-              if(evaluateMove(board) == 10){
-                console.log('hello');
-                bestMoveY = y;
-                bestMoveX = x;
-                playBestMove(board);
-                turn = false;
-                needRandom = false;
-                driver(board);
-              }
-              board[y][x] = "-";
-            }
-          }
-        }
-      }
-      if(needRandom){
-        console.log("we're calling it mah dude");
-        pickRandom(board);
-      }
+      
+      pickRandom(board);
     }else{
       //console.log(JSON.stringify(board) + " player call");
       $("#a1").click(function(){
@@ -280,13 +211,9 @@
     var x = Math.floor(Math.random()*3);
     var y = Math.floor(Math.random()*3);
     if(board[y][x] == "-"){
-      //console.log("called");
-      //console.log(JSON.stringify(board) + "right after called");
-      //console.log("Best move is: " + x + ", " + y);
       bestMoveX = x;
       bestMoveY = y;
       playBestMove(board);
-      //console.log(JSON.stringify(board) + " assigned");
       turn = false;
       driver(board);
     }else{
