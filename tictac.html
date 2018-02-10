@@ -21,6 +21,9 @@
     <div id="jsClass"><span class="jsSymbolSpecial"><i class="fab fa-js-square fa-10x" id="jsSelector"></i></span></div>
     <div id="htmlClass"><span class="HTMLSymbolSpecial"><i class="fab fa-html5 fa-10x" id="htmlSelector"></i></span></div>
   </div>
+  <div id="winnerMessage">
+    <h1 align="center" id="winnerNameMessage">You Are A Winner</h1>
+  </div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -35,6 +38,7 @@
   //on start, display the select icon screen
   $(document).ready(function() {
     $("#wrapper").hide();
+    $("#winnerMessage").hide();
   });
   //sets the player classtype depending on what the user clicked
   $("#jsClass").click(function() {
@@ -84,8 +88,79 @@
     console.log(JSON.stringify(board));
     needRandom = true;
     if(turn){
-      
-      pickRandom(board);
+      for(y=0;y<3;y++){
+        if(needRandom == true){
+          for(x=0;x<3;x++){
+            if(board[y][x] == "-"){
+              if(classType == "j"){
+                board[y][x] = "h";
+                if(evaluateMove(board) == 10){
+                  bestMoveY = y;
+                  bestMoveX = x;
+                  playBestMove(board);
+                  needRandom = false;
+                  break;
+                }else if(evaluateMove(board) !== 10){
+                  board[y][x] = "-";
+                }
+              }else if(classType == "h"){
+                board[y][x] = "j";
+                if(evaluateMove(board) == 10){
+                  bestMoveY = y;
+                  bestMoveX = x;
+                  playBestMove(board);
+                  console.log(JSON.stringify(board));
+                  console.log(x + " " + y);
+                  needRandom = false;
+                  break;
+                }else if(evaluateMove(board) !== 10){
+                  board[y][x] = "-";
+                }
+              }
+            }
+          }
+        }else{
+          break;
+        }
+      }
+      for(y=0;y<3;y++){
+        if(needRandom == true){
+          for(x=0;x<3;x++){
+            if(board[y][x] == "-"){
+              if(classType == "j"){
+                board[y][x] = "j";
+                if(evaluateMove(board) == 10){
+                  bestMoveY = y;
+                  bestMoveX = x;
+                  playBestMove(board);
+                  needRandom = false;
+                  break;
+                }else if(evaluateMove(board) !== 10){
+                  board[y][x] = "-";
+                }
+              }else if(classType == "h"){
+                board[y][x] = "h";
+                if(evaluateMove(board) == 10){
+                  bestMoveY = y;
+                  bestMoveX = x;
+                  playBestMove(board);
+                  console.log(JSON.stringify(board));
+                  console.log(x + " " + y);
+                  needRandom = false;
+                  break;
+                }else if(evaluateMove(board) !== 10){
+                  board[y][x] = "-";
+                }
+              }
+            }
+          }
+        }else{
+          break;
+        }
+      }
+      if(needRandom){
+        pickRandom(board);
+      }
     }else{
       //console.log(JSON.stringify(board) + " player call");
       $("#a1").click(function(){
