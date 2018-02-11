@@ -20,6 +20,43 @@
   grid-template-columns: 266px 266px 266px;
   grid-template-rows: 133px 133px 133px;
 }
+#winnerMessage{
+  margin: auto;
+  width: 800px;
+  height: 400px;
+  padding: 10vh;
+  border-color: black;
+  border-width: 25px;
+  border-radius: 8px;
+  border-style: solid;
+  display: grid;
+  grid-template-columns: 266px 266px 266px;
+  grid-template-rows: 133px 133px 133px;
+}
+#winnerNameMessage{
+  font-size: 90px;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  text-align: center;
+}
+#playYes{
+  grid-column-start: 1;
+  grid-column-end: 2;
+  text-align: center;
+}
+#playNo{
+  grid-column-start: 3;
+  grid-column-end: 4;
+  text-align: center;
+}
+#yesSelector{
+  padding: 5vh;
+  font-size: 75px;
+}
+#noSelector{
+  padding: 5vh;
+  font-size: 75px;
+}
 #pickYourClass{
   font-size: 75px;
   grid-column-start: 1;

@@ -23,6 +23,8 @@
   </div>
   <div id="winnerMessage">
     <h1 align="center" id="winnerNameMessage">You Are A Winner</h1>
+    <div id="playYes"><h1 id="yesSelector">Yes</h1></div>
+    <div id="playNo"><h1 id="noSelector">No</h1></div>
   </div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -48,6 +50,12 @@
   $("#htmlClass").click(function() {
     classType = "h";
     classPicked();
+  });
+  $("#yesSelector").click(function(){
+    location.reload();
+  });
+  $("#noSelector").click(function(){
+    window.history.back();
   });
   //when class is picked, hide the icons
   function classPicked() {
@@ -84,7 +92,85 @@
       return 10;
     }
   }
+  function movesRemaining(board){
+    for(i=0;i<3;i++){
+      for(j=0;j<3;j++){
+        if(board[i][j] == "-"){
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+  function evaluateWinner(board){
+    //evaluate horizontals
+    for(var i=0;i<3;i++){
+      if((board[i][0] == board[i][1]) && (board[i][1] == board[i][2]) && (board[i][1] !== "-")){
+        if(classType == "j"){
+          if(board[i][1] == "j"){
+            return -10;
+          }else if(board[i][1] == "h"){
+            return 10;
+          }
+        }else if(classType == "h"){
+          if(board[i][1] == "h"){
+            return -10;
+          }else if(board[i][1] == "j"){
+            return 10;
+          }
+        }
+      }
+    }
+    //evaluate verticals
+    for(var j=0;j<3;j++){
+      if((board[0][j] == board[1][j]) && (board[1][j] == board[2][j]) && (board[1][j] !== "-")){
+        if(classType == "j"){
+          if(board[1][j] == "j"){
+            return -10;
+          }else if(board[1][j] == "h"){
+            return 10;
+          }
+        }else if(classType == "h"){
+          if(board[1][j] == "h"){
+            return -10;
+          }else if(board[1][j] == "j"){
+            return 10;
+          }
+        }
+      }
+    }
+    //evaluate diagonals
+    if(((board[0][0] == board[1][1]) && (board[1][1] == board[2][2]) && (board[1][1] !== "-")) || ((board[0][2] == board[1][1]) && (board[1][1] == board[2][0]) && (board[1][1] !== "-" ))){
+      if(classType == "j"){
+        if(board[1][1] == "j"){
+          return -10;
+        }else if(board[1][1] == "h"){
+          return 10;
+        }
+      }else if(classType == "h"){
+        if(board[1][1] == "h"){
+          return -10;
+        }else if(board[1][1] == "j"){
+          return 10;
+        }
+      }
+    }
+  }
   function driver(board){
+    if(evaluateWinner(board) == 10){
+      $("#wrapper").hide();
+      $("#winnerNameMessage").html("You Lost! Play again?");
+      $("#winnerMessage").show();
+    }else if(evaluateWinner(board) == -10){
+      $("#wrapper").hide();
+      $("#winnerNameMessage").html("You Win! Play again?");
+      $("#winnerMessage").show();
+    }
+    if(movesRemaining(board) == false){
+      $("#wrapper").hide();
+      $("#winnerNameMessage").html("It's a tie! Play again?");
+      $("#winnerMessage").show();
+    }
     console.log(JSON.stringify(board));
     needRandom = true;
     if(turn){
@@ -160,6 +246,20 @@
       }
       if(needRandom){
         pickRandom(board);
+      }
+      if(evaluateWinner(board) == 10){
+        $("#wrapper").hide();
+        $("#winnerNameMessage").html("You Lost! Play again?");
+        $("#winnerMessage").show();
+      }else if(evaluateWinner(board) == -10){
+        $("#wrapper").hide();
+        $("#winnerNameMessage").html("You Win! Play again?");
+        $("#winnerMessage").show();
+      }
+      if(movesRemaining(board) == false){
+        $("#wrapper").hide();
+        $("#winnerNameMessage").html("It's a tie! Play again?");
+        $("#winnerMessage").show();
       }
     }else{
       //console.log(JSON.stringify(board) + " player call");
