@@ -1,29 +1,102 @@
 #wrapper {
   display: grid;
   grid-template-columns: 50vw 50vw;
-  grid-template-rows: 50vh 25vh 25vh;
+  grid-template-rows: 40vh 30vh 30vh;
   width: 100vw;
   height: 100vh;
   margin: auto; }
 
 #topSection {
   grid-column-start: 1;
-  grid-column-end: 3; }
+  grid-column-end: 3;
+  display: grid;
+  grid-template-columns: 25vw 25vw 25vw 25vw;
+  grid-template-rows: 20vh 20vh;
+  margin: auto; }
+
+#startButton {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  background-color: white;
+  border-color: black;
+  border-radius: 2vh;
+  border-width: 3vh;
+  border-style: solid;
+  text-align: center; }
+
+#startText {
+  font-size: 90px; }
+
+#strictButton {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  background-color: white;
+  border-color: black;
+  border-radius: 2vh;
+  border-width: 3vh;
+  border-style: solid;
+  text-align: left; }
+
+#strictText {
+  font-size: 90px; }
+
+#counterLabel {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 2;
+  background-color: white;
+  border-color: black;
+  border-radius: 2vh;
+  border-width: 3vh;
+  border-style: solid;
+  text-align: center; }
+
+#counterLabelText {
+  font-size: 90px;
+  padding: 1vh; }
+
+#counterNumber {
+  grid-row-start: 2;
+  grid-row-end: 2;
+  grid-column-start: 3;
+  grid-column-end: 4;
+  background-color: white;
+  border-color: black;
+  border-radius: 2vh;
+  border-width: 3vh;
+  border-style: solid;
+  text-align: center; }
+
+#counterNumberText {
+  font-size: 95px;
+  padding: 1vh; }
 
 #middleLeft {
-  height: 25vh;
-  width: 50vw; }
+  background-color: green; }
 
 #middleRight {
-  height: 25vh;
-  width: 50vw; }
+  background-color: red; }
 
 #bottomLeft {
-  height: 25vh;
-  width: 50vw; }
+  background-color: yellow; }
 
 #bottomRight {
-  height: 25vh;
-  width: 50vw; }
+  background-color: blue; }
+
+.noselect {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+     supported by Chrome and Opera */ }
 
 /*# sourceMappingURL=simon.css.map */
