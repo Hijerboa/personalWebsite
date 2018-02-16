@@ -41,13 +41,21 @@
 </body>
 <script language="JavaScript">
   var sequence = [];
-  var count, isClicking, isReciting, isPlaying, isStrict;
+  var count, isClicking, isReciting, isPlaying, isStrict, randNum;
+  var audioGreen = new Audio("simonSound1.mp3");
+  var audioRed = new Audio("simonSound2.mp3");
+  var audioBlue = new Audio("simonSound3.mp3");
+  var audioYellow = new Audio("simonSound4.mp3");
   $(document).ready(function(){
     console.log("hola");
     isPlaying = false;
     isStrict = false;
     count = 1;
     $("#counterNumberText").html(count);
+    selectRandom();
+    selectRandom();
+    selectRandom();
+    console.log(sequence);
   });
   $("#startButton").click(function(){
     if(isPlaying){
@@ -56,6 +64,7 @@
     }else if(isPlaying == false){
       $("#startText").html("Restart");
       isPlaying = true;
+      playFunction();
     }
   });
   $("#strictButton").click(function(){
@@ -71,5 +80,55 @@
     count++;
     $("#counterNumberText").html(count);
   });
+  function selectRandom(){
+    randNum = Math.floor(Math.random()*4);
+    if(randNum == 0){
+      sequence.push("g");
+    }else if(randNum == 1){
+      sequence.push("r");
+    }else if(randNum == 2){
+      sequence.push("b");
+    }else if(randNum == 3){
+      sequence.push("y");
+    }
+  }
+  function playFunction(){
+    var i = 0;
+    var intervalID = setInterval(function() {
+      if(sequence[i] == "g"){
+        $("#middleLeft").css("background-color", "#00F000");
+        audioGreen.play();
+        audioGreen.rewind();
+        setTimeout(function(){
+          $("#middleLeft").css("background-color", "green");
+        },1000);
+      }else if(sequence[i] == "r"){
+        $("#middleRight").css("background-color", "#990000");
+        audioRed.play();
+        audioRed.rewind();
+        setTimeout(function(){
+          $("#middleRight").css("background-color", "red");
+        }, 1000);
+      }else if(sequence[i] == "b"){
+        $("#bottomRight").css("background-color", "#38EEFF");
+        audioBlue.play();
+        audioBlue.rewind();
+        setTimeout(function(){
+          $("#bottomRight").css("background-color", "blue");
+        },1000);
+      }else if(sequence[i] == "y"){
+        $("#bottomLeft").css("background-color", "#CCCC00");
+        audioYellow.play();
+        audioYellow.rewind();
+        setTimeout(function(){
+          $("bottomLeft").css("background-color", "yellow");
+        },1000);
+      }
+      console.log(i);
+      if(++i === sequence.length){
+        window.clearInterval(intervalID);
+      }
+    }, 2000);
+  }
 </script>
 </html>
