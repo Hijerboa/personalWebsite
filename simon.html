@@ -42,20 +42,12 @@
 <script language="JavaScript">
   var sequence = [];
   var count, isClicking, isReciting, isPlaying, isStrict, randNum;
-  var audioGreen = new Audio("simonSound1.mp3");
-  var audioRed = new Audio("simonSound2.mp3");
-  var audioBlue = new Audio("simonSound3.mp3");
-  var audioYellow = new Audio("simonSound4.mp3");
   $(document).ready(function(){
     console.log("hola");
     isPlaying = false;
     isStrict = false;
     count = 1;
     $("#counterNumberText").html(count);
-    selectRandom();
-    selectRandom();
-    selectRandom();
-    console.log(sequence);
   });
   $("#startButton").click(function(){
     if(isPlaying){
@@ -97,31 +89,31 @@
     var intervalID = setInterval(function() {
       if(sequence[i] == "g"){
         $("#middleLeft").css("background-color", "#00F000");
+        var audioGreen = new Audio("simonSound1.mp3");
         audioGreen.play();
-        audioGreen.rewind();
         setTimeout(function(){
           $("#middleLeft").css("background-color", "green");
         },1000);
       }else if(sequence[i] == "r"){
         $("#middleRight").css("background-color", "#990000");
+        var audioRed = new Audio("simonSound2.mp3");
         audioRed.play();
-        audioRed.rewind();
         setTimeout(function(){
           $("#middleRight").css("background-color", "red");
         }, 1000);
       }else if(sequence[i] == "b"){
         $("#bottomRight").css("background-color", "#38EEFF");
+        var audioBlue = new Audio("simonSound3.mp3");
         audioBlue.play();
-        audioBlue.rewind();
         setTimeout(function(){
           $("#bottomRight").css("background-color", "blue");
         },1000);
       }else if(sequence[i] == "y"){
         $("#bottomLeft").css("background-color", "#CCCC00");
+        var audioYellow = new Audio("simonSound4.mp3");
         audioYellow.play();
-        audioYellow.rewind();
         setTimeout(function(){
-          $("bottomLeft").css("background-color", "yellow");
+          $("#bottomLeft").css("background-color", "yellow");
         },1000);
       }
       console.log(i);
