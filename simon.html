@@ -22,7 +22,7 @@
         <h1 id="counterLabelText">Count:</h1>
       </div>
       <div id="counterNumber" class="noselect">
-        <h1 id="counterNumberText">19</h1>
+        <h1 id="counterNumberText">1</h1>
       </div>
     </div>
     <div id="middleLeft">
@@ -41,9 +41,10 @@
 </body>
 <script language="JavaScript">
   var sequence = [];
+  var isClickable;
   var count, isClicking, isReciting, isPlaying, isStrict, randNum;
+  var sequenceNumber;
   $(document).ready(function(){
-    console.log("hola");
     isPlaying = false;
     isStrict = false;
     count = 1;
@@ -56,7 +57,7 @@
     }else if(isPlaying == false){
       $("#startText").html("Restart");
       isPlaying = true;
-      playFunction();
+      selectRandom();
     }
   });
   $("#strictButton").click(function(){
@@ -83,6 +84,8 @@
     }else if(randNum == 3){
       sequence.push("y");
     }
+    console.log(sequence);
+    playFunction();
   }
   function playFunction(){
     var i = 0;
@@ -116,11 +119,56 @@
           $("#bottomLeft").css("background-color", "yellow");
         },1000);
       }
-      console.log(i);
       if(++i === sequence.length){
+        isClickable = true;
         window.clearInterval(intervalID);
+        sequenceNumber = 0;
+        userPlays();
       }
     }, 2000);
+  }
+  function userPlays(){
+    console.log(sequenceNumber);
+    $("#middleLeft").click(function(){
+      $("#middleLeft").css("background-color", "#00F000");
+      var audioGreen = new Audio("simonSound1.mp3");
+      audioGreen.play();
+      setTimeout(function(){
+        $("#middleLeft").css("background-color", "green");
+      },400);
+      if(sequence[sequenceNumber] == "g"){
+        if(sequenceNumber == (sequence.length - 1)){
+          sequenceNumber = 0;
+          selectRandom();
+        }else{
+          sequenceNumber++;
+          userPlays();
+        }
+      }else{
+        console.log(sequenceNumber);
+        console.log("no bueno");
+      }
+    });
+    $("#middleRight").click(function(){
+      $("#middleRight").css("background-color", "#990000");
+      var audioRed = new Audio("simonSound2.mp3");
+      audioRed.play();
+      setTimeout(function(){
+        $("#middleRight").css("background-color", "red");
+      }, 400);
+      if(sequence[sequenceNumber] == "r"){
+        if(sequenceNumber == (sequence.length -1)){
+          sequenceNumber = 0;
+          selectRandom();
+        }else{
+          sequenceNumber++;
+          userPlays();
+        }
+      }else{
+        console.log(sequenceNumber);
+        console.log("no bueno");
+      }
+    });
   }
 </script>
 </html>
