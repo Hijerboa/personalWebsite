@@ -47,16 +47,17 @@
   $(document).ready(function(){
     isPlaying = false;
     isStrict = false;
-    count = 1;
+    count = 0;
     $("#counterNumberText").html(count);
   });
   $("#startButton").click(function(){
     if(isPlaying){
       $("#startText").html("Start");
-      isPlaying = false;
+      sequence = [];
+      count = 0;
+      isStrict = false;
     }else if(isPlaying == false){
       $("#startText").html("Restart");
-      isPlaying = true;
       selectRandom();
     }
   });
@@ -74,6 +75,8 @@
     $("#counterNumberText").html(count);
   });
   function selectRandom(){
+    count++;
+    $("#counterNumberText").html(count);
     randNum = Math.floor(Math.random()*4);
     if(randNum == 0){
       sequence.push("g");
@@ -123,9 +126,107 @@
         isClickable = true;
         window.clearInterval(intervalID);
         sequenceNumber = 0;
-        userPlays();
+        isPlaying = true;
       }
     }, 2000);
   }
+  $("#middleLeft").click(function(){
+    if(isPlaying){
+      $("#middleLeft").css("background-color", "#00F000");
+      var audioGreen = new Audio("simonSound1.mp3");
+      audioGreen.play();
+      setTimeout(function(){
+        $("#middleLeft").css("background-color", "green");
+      },400);
+      if(sequence[sequenceNumber] == "g"){
+        if((sequenceNumber + 1) == sequence.length){
+          isPlaying = false;
+          selectRandom();
+        }else{
+          sequenceNumber++;
+        }
+      }else{
+        isPLaying = false;
+        $("#counterNumberText").html("!!");
+        $("#counterNumberText").fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+        setTimeout(function(){
+          $("#counterNumberText").html(count);
+        },700);
+        playFunction();
+      }
+    }
+  });
+  $("#middleRight").click(function(){
+    $("#middleRight").css("background-color", "#990000");
+    var audioRed = new Audio("simonSound2.mp3");
+    audioRed.play();
+    setTimeout(function(){
+      $("#middleRight").css("background-color", "red");
+    }, 400);
+    if(sequence[sequenceNumber] == "r"){
+      if((sequenceNumber + 1) == sequence.length){
+        isPlaying = false;
+        selectRandom();
+      }else{
+        sequenceNumber++;
+      }
+    }else{
+      isPlaying = false;
+      $("#counterNumberText").html("!!");
+      $("#counterNumberText").fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+      setTimeout(function(){
+        $("#counterNumberText").html(count);
+      },700);
+      playFunction();
+    }
+  });
+  $("#bottomLeft").click(function(){
+    $("#bottomLeft").css("background-color", "#CCCC00");
+    var audioYellow = new Audio("simonSound4.mp3");
+    audioYellow.play();
+    setTimeout(function(){
+      $("#bottomLeft").css("background-color", "yellow");
+    },400);
+    if(sequence[sequenceNumber] == "y"){
+      if((sequenceNumber + 1) == sequence.length){
+        isPlaying = false;
+        selectRandom();
+      }else{
+        sequenceNumber++;
+      }
+    }else{
+      isPlaying = false;
+      $("#counterNumberText").html("!!");
+      $("#counterNumberText").fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+      setTimeout(function(){
+        $("#counterNumberText").html(count);
+      },700);
+      playFunction();
+    }
+  });
+  $("#bottomRight").click(function(){
+    $("#bottomRight").css("background-color", "#38EEFF");
+    var audioBlue = new Audio("simonSound3.mp3");
+    audioBlue.play();
+    setTimeout(function(){
+      $("#bottomRight").css("background-color", "blue");
+    },400);
+    if(sequence[sequenceNumber] == "b"){
+      if((sequenceNumber + 1) == sequence.length){
+        isPlaying = false;
+        selectRandom();
+      }else{
+        sequenceNumber++;
+      }
+    }else{
+      isPlaying = false;
+      $("#counterNumberText").html("!!");
+      $("#counterNumberText").fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+      setTimeout(function(){
+        $("#counterNumberText").html(count);
+      },700);
+      playFunction();
+    }
+  });
 </script>
 </html>
