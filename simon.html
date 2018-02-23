@@ -34,6 +34,11 @@
     <div id="bottomRight">
     </div>
   </div>
+  <div id="winConditionWrapper">
+    <h1 align="center" id="winnerNameMessageSimon">You Are A Winner</h1>
+    <div id="playYesSimon"><h1 id="yesSelectorSimon">Yes</h1></div>
+    <div id="playNoSimon"><h1 id="noSelectorSimon">No</h1></div>
+  </div>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -42,21 +47,25 @@
 <script language="JavaScript">
   var sequence = [];
   var isClickable;
-  var count, isClicking, isReciting, isPlaying, isStrict, randNum;
+  var count, isPlaying, isStrict, randNum, started;
   var sequenceNumber;
   $(document).ready(function(){
+    $("#winConditionWrapper").hide();
+    started = false;
     isPlaying = false;
     isStrict = false;
     count = 0;
     $("#counterNumberText").html(count);
   });
   $("#startButton").click(function(){
-    if(isPlaying){
+    if(started){
+      started = false;
       $("#startText").html("Start");
       sequence = [];
       count = 0;
       isStrict = false;
-    }else if(isPlaying == false){
+    }else if(started == false){
+      started = true;
       $("#startText").html("Restart");
       selectRandom();
     }
@@ -71,24 +80,36 @@
     }
   });
   $("#counterLabel").click(function(){
-    count++;
     $("#counterNumberText").html(count);
   });
+  $("#yesSelectorSimon").click(function(){
+    location.reload();
+  });
+  $("#noSelectorSimon").click(function(){
+    window.history.back();
+  });
   function selectRandom(){
-    count++;
-    $("#counterNumberText").html(count);
-    randNum = Math.floor(Math.random()*4);
-    if(randNum == 0){
-      sequence.push("g");
-    }else if(randNum == 1){
-      sequence.push("r");
-    }else if(randNum == 2){
-      sequence.push("b");
-    }else if(randNum == 3){
-      sequence.push("y");
+    if(count == 20){
+      $("#wrapper").hide();
+      $("#winnerNameMessageSimon").html("You Won! Would you like to play again?");
+      $("#winConditionWrapper").show();
+
+    }else{
+      count++;
+      $("#counterNumberText").html(count);
+      randNum = Math.floor(Math.random()*4);
+      if(randNum == 0){
+        sequence.push("g");
+      }else if(randNum == 1){
+        sequence.push("r");
+      }else if(randNum == 2){
+        sequence.push("b");
+      }else if(randNum == 3){
+        sequence.push("y");
+      }
+      console.log(sequence);
+      playFunction();
     }
-    console.log(sequence);
-    playFunction();
   }
   function playFunction(){
     var i = 0;
@@ -146,13 +167,19 @@
           sequenceNumber++;
         }
       }else{
-        isPLaying = false;
-        $("#counterNumberText").html("!!");
-        $("#counterNumberText").fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
-        setTimeout(function(){
-          $("#counterNumberText").html(count);
-        },700);
-        playFunction();
+        if(isStrict){
+          $("#wrapper").hide();
+          $("#winnerNameMessageSimon").html("You Lost! :( Would you like to play again?");
+          $("#winConditionWrapper").show();
+        }else{
+          isPlaying = false;
+          $("#counterNumberText").html("!!");
+          $("#counterNumberText").fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+          setTimeout(function(){
+            $("#counterNumberText").html(count);
+          },700);
+          playFunction();
+        }
       }
     }
   });
@@ -171,13 +198,19 @@
         sequenceNumber++;
       }
     }else{
-      isPlaying = false;
-      $("#counterNumberText").html("!!");
-      $("#counterNumberText").fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
-      setTimeout(function(){
-        $("#counterNumberText").html(count);
-      },700);
-      playFunction();
+      if(isStrict){
+        $("#wrapper").hide();
+        $("#winnerNameMessageSimon").html("You Lost! :( Would you like to play again?");
+        $("#winConditionWrapper").show();
+      }else{
+        isPlaying = false;
+        $("#counterNumberText").html("!!");
+        $("#counterNumberText").fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+        setTimeout(function(){
+          $("#counterNumberText").html(count);
+        },700);
+        playFunction();
+      }
     }
   });
   $("#bottomLeft").click(function(){
@@ -195,13 +228,19 @@
         sequenceNumber++;
       }
     }else{
-      isPlaying = false;
-      $("#counterNumberText").html("!!");
-      $("#counterNumberText").fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
-      setTimeout(function(){
-        $("#counterNumberText").html(count);
-      },700);
-      playFunction();
+      if(isStrict){
+        $("#wrapper").hide();
+        $("#winnerNameMessageSimon").html("You Lost! :( Would you like to play again?");
+        $("#winConditionWrapper").show();
+      }else{
+        isPlaying = false;
+        $("#counterNumberText").html("!!");
+        $("#counterNumberText").fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+        setTimeout(function(){
+          $("#counterNumberText").html(count);
+        },700);
+        playFunction();
+      }
     }
   });
   $("#bottomRight").click(function(){
@@ -219,13 +258,19 @@
         sequenceNumber++;
       }
     }else{
-      isPlaying = false;
-      $("#counterNumberText").html("!!");
-      $("#counterNumberText").fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
-      setTimeout(function(){
-        $("#counterNumberText").html(count);
-      },700);
-      playFunction();
+      if(isStrict){
+        $("#wrapper").hide();
+        $("#winnerNameMessageSimon").html("You Lost! :( Would you like to play again?");
+        $("#winConditionWrapper").show();
+      }else{
+        isPlaying = false;
+        $("#counterNumberText").html("!!");
+        $("#counterNumberText").fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+        setTimeout(function(){
+          $("#counterNumberText").html(count);
+        },700);
+        playFunction();
+      }
     }
   });
 </script>

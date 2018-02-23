@@ -99,4 +99,41 @@
   /* Non-prefixed version, currently
      supported by Chrome and Opera */ }
 
+#winConditionWrapper {
+  margin: auto;
+  width: 80vw;
+  height: 81vh;
+  padding: 10vh;
+  border-color: black;
+  border-width: 25px;
+  border-radius: 8px;
+  border-style: solid;
+  display: grid;
+  grid-template-columns: 20vw 20vw 20vw 20vw;
+  grid-template-rows: 27vh 27vh 27vh; }
+
+#winnerNameMessageSimon {
+  font-size: 85px;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  text-align: center; }
+
+#playYesSimon {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  text-align: center; }
+
+#playNoSimon {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  text-align: center; }
+
+#yesSelectorSimon {
+  padding: 5vh;
+  font-size: 75px; }
+
+#noSelectorSimon {
+  padding: 5vh;
+  font-size: 75px; }
+
 /*# sourceMappingURL=simon.css.map */
